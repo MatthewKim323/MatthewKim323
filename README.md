@@ -53,10 +53,10 @@ kawaii AI desktop coworker. she sits at the desk with you for 8 hours so you don
 ## tech
 
 ```
-typescript · python
-next.js · react · react native · hono · fastapi
-claude · langchain · xgboost · yolo · elevenlabs · gaussian splat
-supabase · postgres · solana · vercel · fly
+claude · claude code · MCP · agent loops + tool use
+multi-agent orchestration · fetch.ai uagents · openclaw · browser-use
+knowledge graphs · RAG · vector search · "no chunk id, no claim"
+elevenlabs voice · langchain · typescript · python · fastapi · supabase
 ```
 
 ---
