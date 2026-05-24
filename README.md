@@ -4,12 +4,6 @@ builder · ai agents, infra, agentic engineering/workflows · 12x hackathon winn
 
 ---
 
-## currently
-
-making whatever's interesting. mostly agents that actually do things.
-
----
-
 ## what i've shipped
 
 **jabby**
@@ -44,8 +38,11 @@ kawaii AI desktop coworker. she sits at the desk with you for 8 hours so you don
 ## other projects
 
 [aceds](https://github.com/MatthewKim323/aceds) · ACE, the schedule builder UCSB deserves. XGBoost grade predictor on 104k course rows / 17 years of data + a ~44ms integer-program scheduler.
+
 [cadence](https://github.com/MatthewKim323/cadence) · multi-agent platform that preserves your writing voice and beats AI detection.
+
 [tapn](https://github.com/MatthewKim323/tapn) · 6-agent pipeline that finds, tailors, applies, schedules, and preps interviews for you.
+
 **gstack skills** · claude code skills i use every day: [prodcheck](https://github.com/MatthewKim323/prodcheck) · [seccheck](https://github.com/MatthewKim323/seccheck) · [prwrite](https://github.com/MatthewKim323/prwrite) · [testwrite](https://github.com/MatthewKim323/testwrite) · [contextcheck](https://github.com/MatthewKim323/contextcheck) · [research](https://github.com/MatthewKim323/research)
 
 ---
