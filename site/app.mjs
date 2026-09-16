@@ -236,7 +236,8 @@ async function startBot() {
   listen(document, 'pointermove', updatePointer, { passive: true });
   listen(stage, 'pointerdown', updatePointer, { passive: true });
   listen(document, 'pointerout', event => {
-    if (!event.relatedTarget && !keyboardTarget) { tracking = false; setStatus(); }
+    // Touch sends pointerout on release. Keep its last tap until the idle timer expires.
+    if (event.pointerType !== 'touch' && !event.relatedTarget && !keyboardTarget) { tracking = false; setStatus(); }
   });
   listen(document, 'visibilitychange', () => { if (document.hidden) suspend(); else schedule(); });
   listen(window, 'blur', () => { if (!keyboardTarget) { tracking = false; setStatus(); } });

@@ -110,6 +110,11 @@ test('pointer or touch tracking changes head direction and actual rendered pixel
   await input(0.85);
   await expect.poll(() => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.yaw))).toBeGreaterThan(0.15);
   expect(await framePixels(page)).not.toBe(left);
+  if (testInfo.project.use.isMobile) {
+    // A released tap should hold attention, then return to idle without another input.
+    await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'tracking');
+    await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'idle', { timeout: 5000 });
+  }
 });
 
 test('explicit light and dark themes persist across reload, and system mode can be restored', async ({ page }) => {
