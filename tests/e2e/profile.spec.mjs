@@ -5,8 +5,10 @@ import AxeBuilder from '@axe-core/playwright';
 const profile = JSON.parse(await readFile(new URL('../../data/profile.json', import.meta.url), 'utf8'));
 const canvasSelector = '#ocean-canvas';
 const portfolioProjects = profile.projects.filter(project => project.category !== 'tool');
-const featuredCount = portfolioProjects.filter(project => project.featured || project.category === 'featured').length;
-const archiveCount = profile.projects.filter(project => !project.featured && project.category === 'archive').length;
+const featuredProjects = portfolioProjects.filter(project => project.featured || project.category === 'featured');
+const archiveProjects = portfolioProjects.filter(project => !project.featured && project.category === 'archive');
+const featuredCount = featuredProjects.length;
+const archiveCount = archiveProjects.length;
 const frameCount = page => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.frames));
 const framePixels = page => page.locator(canvasSelector).evaluate(canvas => canvas.toDataURL());
 
@@ -27,10 +29,14 @@ async function openProfile(page) {
 
 test('every portfolio project loads with correct content and links, and the archive expands', async ({ page }) => {
   await openProfile(page);
-  expect(portfolioProjects).toHaveLength(16);
-  await expect(page.locator('article[data-project]')).toHaveCount(16);
+  await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
   await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
   await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
+  expect(await page.locator('#featured-projects article').evaluateAll(rows => rows.map(row => row.dataset.project))).toEqual(featuredProjects.map(project => project.id));
+  expect(await page.locator('#archive-projects article').evaluateAll(rows => rows.map(row => row.dataset.project))).toEqual(archiveProjects.map(project => project.id));
+  for (const project of profile.projects.filter(project => project.category === 'tool')) {
+    await expect(page.locator(`article[data-project="${project.id}"]`)).toHaveCount(0);
+  }
   await expect(page.locator('#workbench, #tools-list, .project-index, #work-count, #archive-count')).toHaveCount(0);
   await expect(page.locator('#archive-projects')).toBeHidden();
   await page.locator('#archive summary').click();

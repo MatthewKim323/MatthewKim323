@@ -38,8 +38,11 @@ test('tool projects stay omitted even when marked featured in source data', () =
 });
 
 test('unlinked projects remain text and do not navigate to the current page', () => {
-  const row = renderProject(profile.projects.find(project => project.id === 'jabby'));
-  assert.ok(row.includes('<h3>jabby</h3>'));
+  const row = renderProject({
+    id: 'private-prototype', name: 'private prototype', description: 'a project without a public destination.',
+    url: '', stack: [], category: 'archive', featured: false,
+  });
+  assert.ok(row.includes('<h3>private prototype</h3>'));
   assert.ok(!row.includes('<a '));
 });
 

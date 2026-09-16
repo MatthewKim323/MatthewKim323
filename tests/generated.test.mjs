@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
-import { root, readJSON, validateProfile, summarizeActivity } from '../scripts/lib.mjs';
+import { root, readJSON, validateProfile, summarizeActivity, escapeMarkdown } from '../scripts/lib.mjs';
 
 test('selected work and archive remain in the README while tool listings stay omitted',async()=>{
   const p=validateProfile(await readJSON('data/profile.json'));
@@ -12,7 +12,23 @@ test('selected work and archive remain in the README while tool listings stay om
   assert.doesNotMatch(readme,/tools i build with|under the hood|One character engine|drawn from 3D geometry|meet the bot|bot-dark/);
   assert.ok(readme.includes('assets/ocean-dark.svg'));
   assert.ok(!readme.includes(']()'));
-  assert.equal(p.projects.length,22);
+});
+test('selected work and archive preserve the curated source order without crossing sections',async()=>{
+  const profile=validateProfile(await readJSON('data/profile.json'));
+  const readme=await readFile(path.join(root,'README.md'),'utf8');
+  const archiveOpen=readme.indexOf('<details>');
+  const archiveClose=readme.indexOf('</details>',archiveOpen);
+  assert.ok(archiveOpen>=0 && archiveClose>archiveOpen,'the project archive has an explicit boundary');
+  const selectedSection=readme.slice(0,archiveOpen);
+  const archiveSection=readme.slice(archiveOpen,archiveClose);
+  const publicProjects=profile.projects.filter(project=>project.category!=='tool');
+  const selectedProjects=publicProjects.filter(project=>project.featured || project.category==='featured');
+  const archiveProjects=publicProjects.filter(project=>!project.featured && project.category==='archive');
+  const title=project=>`**${project.url?`[${escapeMarkdown(project.name)}](${project.url})`:escapeMarkdown(project.name)}**`;
+  const headings=section=>[...section.matchAll(/^\*\*.+?\*\*(?= ·|<br>)/gm)].map(match=>match[0]);
+  assert.deepEqual(headings(selectedSection),selectedProjects.map(title),'selected work contains exactly the curated featured projects in order');
+  assert.deepEqual(headings(archiveSection),archiveProjects.map(title),'archive contains exactly the remaining public projects in order');
+  assert.equal(headings(readme).length,publicProjects.length,'every public project appears once, with no tool entries');
 });
 test('committed calendar is consecutive and reconciles with the display metrics',async()=>{
   const activity=await readJSON('data/activity.json');

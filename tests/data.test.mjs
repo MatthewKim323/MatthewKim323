@@ -20,11 +20,23 @@ test('invalid GitHub data fails before replacing generated assets', () => {
 });
 test('missing identity is a hard failure', () => assert.throws(() => validateProfile({})));
 
-test('the checked-in content validates without mutation or losing unlinked projects', () => {
+test('the checked-in content validates without mutation', () => {
   const data = freshProfile();
   assert.equal(validateProfile(data), data);
   assert.deepEqual(data, profile);
-  assert.equal(data.projects.find(project => project.id === 'jabby').url, '');
+});
+
+test('an explicitly unlinked project validates without inventing a destination', () => {
+  const data = freshProfile();
+  const unlinked = {
+    id: 'private-prototype', name: 'private prototype', description: 'a project without a public destination.',
+    url: '', stack: [], category: 'archive', featured: false,
+  };
+  data.projects.push(unlinked);
+  const before = structuredClone(data);
+  assert.equal(validateProfile(data), data);
+  assert.deepEqual(data, before);
+  assert.equal(data.projects.at(-1).url, '');
 });
 
 test('Markdown text cannot create headings, links, HTML, emphasis, or inline code', () => {
