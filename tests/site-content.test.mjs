@@ -71,3 +71,16 @@ test('template drift fails the build instead of publishing missing content', () 
   assert.throws(() => renderProfileHtml(template.replace('{{BIO}}', ''), profile), /Missing HTML template slot: BIO/);
   assert.throws(() => renderProfileHtml(`${template}{{UNRECOGNIZED}}`, profile), /Unknown HTML template slot/);
 });
+
+
+test('the selected ocean replaces the old character without interaction or implementation copy', () => {
+  const html = renderProfileHtml(template, profile);
+  assert.ok(html.includes('id="ocean-canvas"'));
+  assert.ok(html.includes('id="ocean-stage"'));
+  assert.ok(html.includes('ocean-still-dark.svg'));
+  assert.ok(html.includes('ocean-still-light.svg'));
+  assert.ok(html.includes('width="760" height="380"'));
+  for (const removed of ['bot-canvas', 'bot-stage', 'bot-fallback', 'data-look', 'ascii companion', 'move your cursor']) {
+    assert.ok(!html.includes(removed), `${removed} stays removed`);
+  }
+});

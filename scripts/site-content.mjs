@@ -50,7 +50,7 @@ export function renderProfileHtml(template, profile) {
     NAME: text(profile.name),
     HANDLE: text(profile.handle.toLowerCase()),
     PAGE_TITLE: text(`${profile.name} / ${profile.tagline}`),
-    DESCRIPTION: text(`${profile.name}. ${profile.headline} Selected work and an original ASCII companion.`),
+    DESCRIPTION: text(`${profile.name}. ${profile.headline} Selected work beneath a moonlit ASCII ocean.`),
     HERO_NAME: heroName,
     TAGLINE: text(profile.tagline),
     HEADLINE: text(profile.headline),

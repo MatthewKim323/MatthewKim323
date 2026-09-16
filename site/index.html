@@ -35,25 +35,24 @@
 
       <main id="top">
         <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="tiny-plus" aria-hidden="true">+</span> builder, through and through</p>
-            <h1 id="hero-title">{{HERO_NAME}}</h1>
-            <p class="hero-tagline" id="tagline">{{TAGLINE}}</p>
-            <p class="hero-description" id="headline">{{HEADLINE}}</p>
-            <div class="hero-links"><a href="#work" class="text-link">explore the work <span aria-hidden="true">↓</span></a><span class="award-mark" id="awards-label">{{AWARDS}}</span></div>
-          </div>
-          <figure class="bot-figure" aria-labelledby="bot-caption">
-            <div class="bot-topline"><span>ascii companion</span><span class="bot-state"><span class="state-dot" aria-hidden="true"></span><span id="bot-state">standby</span></span></div>
-            <div class="bot-stage" id="bot-stage">
-              <canvas id="bot-canvas" role="img" aria-label="An original floating companion rendered entirely from ASCII characters. Its face and eyes follow your pointer." hidden></canvas>
-              <picture class="bot-fallback" id="bot-fallback"><source srcset="./assets/bot-still-dark.svg" media="(prefers-color-scheme: dark)"><img src="./assets/bot-still-light.svg" width="760" height="444" alt="An original floating character with two friendly pill-shaped eyes, drawn entirely from ASCII characters."></picture>
+          <figure class="ocean-figure" aria-label="Moonlit ocean">
+            <div class="ocean-stage" id="ocean-stage">
+              <canvas id="ocean-canvas" role="img" aria-label="A moonlit ocean drawn in ASCII characters. Warm moonlight shimmers across gently moving waves." hidden></canvas>
+              <picture class="ocean-fallback" id="ocean-fallback"><source srcset="./assets/ocean-still-dark.svg" media="(prefers-color-scheme: dark)"><img src="./assets/ocean-still-light.svg" width="760" height="380" alt="An ASCII landscape of moonlight reflecting across the ocean."></picture>
             </div>
-            <figcaption id="bot-caption">
-              <span id="bot-instruction">a little curiosity, in characters.</span>
-              <button type="button" class="motion-button" id="motion-toggle" aria-pressed="false" hidden><span id="motion-icon" aria-hidden="true">Ⅱ</span><span id="motion-label">pause</span></button>
-            </figcaption>
-            <div class="bot-keyboard" id="bot-keyboard" hidden><span>look</span><button type="button" data-look="left" aria-label="Make the companion look left">←</button><button type="button" data-look="up" aria-label="Make the companion look up">↑</button><button type="button" data-look="down" aria-label="Make the companion look down">↓</button><button type="button" data-look="right" aria-label="Make the companion look right">→</button><button type="button" data-look="center" aria-label="Return the companion to idle">center</button></div>
+            <figcaption><button type="button" class="motion-button" id="motion-toggle" aria-pressed="false" hidden><span id="motion-icon" aria-hidden="true">Ⅱ</span><span id="motion-label">pause</span></button></figcaption>
           </figure>
+          <div class="hero-copy">
+            <div class="hero-identity">
+              <p class="eyebrow"><span class="tiny-plus" aria-hidden="true">+</span> builder, through and through</p>
+              <h1 id="hero-title">{{HERO_NAME}}</h1>
+            </div>
+            <div class="hero-details">
+              <p class="hero-tagline" id="tagline">{{TAGLINE}}</p>
+              <p class="hero-description" id="headline">{{HEADLINE}}</p>
+              <div class="hero-links"><a href="#work" class="text-link">explore the work <span aria-hidden="true">↓</span></a><span class="award-mark" id="awards-label">{{AWARDS}}</span></div>
+            </div>
+          </div>
         </section>
 
         <section class="about-strip" aria-label="About Matt">
