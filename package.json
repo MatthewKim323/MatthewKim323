@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "One character, two surfaces: a generated GitHub profile and an interactive ASCII portfolio.",
+  "description": "A generated GitHub profile and portfolio beneath a moonlit ASCII ocean.",
   "engines": { "node": ">=22" },
   "scripts": {
     "generate": "node scripts/generate.mjs",

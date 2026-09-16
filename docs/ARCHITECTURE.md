@@ -6,7 +6,7 @@ Maintenance documentation belongs here. The public profile presents Matt, the mo
 
 `data/profile.json` is the editorial source for identity, contact links, project descriptions, awards, and current interests. `scripts/lib.mjs` validates it before generation. `scripts/generate.mjs` writes the profile README and SVG assets; `scripts/site-content.mjs` generates the companion site's HTML from the same records.
 
-The public surfaces show 16 projects. Six records with `category: "tool"` remain in the editorial source for reference and are excluded from public output. Project ordering is editorial. No client fetch is needed to read the biography, projects, archive disclosure, or contact links.
+The public surfaces show 19 projects. Six records with `category: "tool"` remain in the editorial source for reference and are excluded from public output. Project ordering is editorial. No client fetch is needed to read the biography, projects, archive disclosure, or contact links.
 
 ## Shared ocean renderer
 

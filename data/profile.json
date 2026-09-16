@@ -1,53 +1,88 @@
 {
   "name": "matt kim",
   "handle": "MatthewKim323",
-  "tagline": "for the love of the game.",
-  "headline": "i build agents, context systems, and the tools to ship them.",
-  "bio": [
-    "builder working across ai agents, infrastructure, and interfaces with a little personality.",
-    "persistent context. useful autonomy. software that feels alive."
-  ],
-  "email": "founders@kalilabs.ai",
+  "tagline": "building things people would actually use.",
+  "headline": "full-stack and agentic engineer building persistent agents and real-time systems.",
+  "bio": ["i started with a python text adventure in middle school. that curiosity grew into state-level robotics, hackathons, and a habit of learning whatever a problem needs to get it shipped.", "building kali labs. san francisco / ucsb, studying stats & data science and economics. i like turning frontier models into products that are fast, reliable, and actually useful."],
+  "email": "matthewykim23@gmail.com",
   "links": [
+    { "label": "portfolio", "url": "https://mykm.dev" },
     { "label": "github", "url": "https://github.com/MatthewKim323" },
-    { "label": "email", "url": "mailto:founders@kalilabs.ai" }
+    { "label": "linkedin", "url": "https://www.linkedin.com/in/matthew-y-kim" },
+    { "label": "x", "url": "https://x.com/matthewykim23" },
+    { "label": "devpost", "url": "https://devpost.com/matthewykim23" },
+    { "label": "resume", "url": "https://mykm.dev/matthew-resume.pdf" },
+    { "label": "email", "url": "mailto:matthewykim23@gmail.com" }
   ],
-  "focus": ["ai agents", "context & memory", "creative tools", "infrastructure"],
-  "awardsLabel": "13x hackathon winner",
+  "focus": ["persistent context", "embodied agents", "real-time voice", "computer use"],
+  "awardsLabel": "13 hackathon wins in 6 months",
   "projects": [
     {
-      "id": "syla",
-      "name": "syla",
-      "description": "the academic context layer for ai. sync canvas into a classroom brain that chatgpt can query through mcp.",
-      "url": "https://github.com/MatthewKim323/syla_export",
-      "stack": ["typescript", "next.js", "postgres", "mcp"],
+      "id": "agartha",
+      "name": "agartha",
+      "description": "a minecraft companion that talks and acts at the same time, with memory shared across sessions through jabby.",
+      "url": "https://mykm.dev/work/agartha",
+      "award": "insforge winner @ agi summit 2026",
+      "stack": ["typescript", "gemini live", "mineflayer", "gbrain"],
       "category": "featured",
       "featured": true
     },
     {
-      "id": "editskill",
-      "name": "editskill",
-      "description": "agent prompts to demo videos. capture a website, edit a recordly project, and render an mp4 in headless chromium.",
-      "url": "https://github.com/MatthewKim323/editskill",
-      "stack": ["python", "node.js", "chromium", "recordly"],
+      "id": "jabby",
+      "name": "jabby",
+      "description": "my discord-native, always-on agent. background jobs, live voice calls, persistent memory, and a minecraft body.",
+      "url": "https://mykm.dev/work/jabby",
+      "stack": ["typescript", "discord", "claude code", "gbrain"],
       "category": "featured",
       "featured": true
     },
     {
-      "id": "1to1",
-      "name": "1to1",
-      "description": "measure a live website, rebuild its layout and motion, then verify the result with pixel diffs across breakpoints.",
-      "url": "https://github.com/MatthewKim323/1to1",
-      "stack": ["typescript", "bun", "chromium"],
+      "id": "angel",
+      "name": "angel",
+      "description": "a kawaii ai coworker with persistent memory, a 3d desk, and agents that work alongside you.",
+      "url": "https://mykm.dev/work/angel",
+      "award": "best overall @ nozomio ai agents hackathon",
+      "stack": ["react", "three.js", "convex", "codex"],
       "category": "featured",
       "featured": true
     },
     {
-      "id": "nerve",
-      "name": "nerve",
-      "description": "a little intent, a lot more possible. local-first computer use with single-switch input, experimental gaze, and explicit action approval.",
-      "url": "https://github.com/MatthewKim323/agarstra",
-      "stack": ["typescript", "react", "onnx", "mediapipe"],
+      "id": "iris",
+      "name": "iris",
+      "description": "select a region, describe an edit, and carry that change across a video while preserving continuity.",
+      "url": "https://mykm.dev/work/iris",
+      "award": "2nd place overall @ citrushacks",
+      "stack": ["react", "fastapi", "sam", "ffmpeg"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "nami",
+      "name": "nami",
+      "description": "a pixel-art counseling office for first-gen students, with knowledge-graph answers grounded in their own source files.",
+      "url": "https://mykm.dev/work/nami",
+      "award": "1st @ fullyhacks",
+      "stack": ["next.js", "supabase", "pixijs", "claude"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "ione",
+      "name": "ione",
+      "description": "an ai math tutor in the margin: screen-aware ocr, reasoning, and voice grounded in the learner's files.",
+      "url": "https://mykm.dev/work/ione",
+      "award": "1x winner @ broncohacks",
+      "stack": ["react", "hono", "supabase", "elevenlabs"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "kali-v0",
+      "name": "kali v0",
+      "description": "one chat across 11+ nonprofit tools: donors, grants, finance, programs, and comms, with source-record citations.",
+      "url": "https://mykm.dev/work/kali-v0",
+      "award": "1x winner @ hackdavis",
+      "stack": ["next.js", "claude", "supabase", "drizzle"],
       "category": "featured",
       "featured": true
     },
@@ -55,88 +90,101 @@
       "id": "flow",
       "name": "flow",
       "description": "speak a concept, step inside a gaussian-splat world, and explore it with an ai narrator.",
-      "url": "https://github.com/stephenhungg/flow",
+      "url": "https://mykm.dev/work/flow",
       "award": "2x winner @ sbhacks",
       "stack": ["react", "three.js", "world labs", "elevenlabs"],
       "category": "featured",
       "featured": true
     },
     {
-      "id": "nami",
-      "name": "nami",
-      "description": "a pixel-art counseling crew for first-gen students. knowledge-graph answers linked to the student's own source files.",
-      "url": "https://github.com/MatthewKim323/nami",
-      "award": "1st place @ fullyhacks",
-      "stack": ["next.js", "drizzle", "supabase"],
+      "id": "dialed",
+      "name": "dialed",
+      "description": "agents that watch social feeds, identify manipulation patterns, and coordinate real-time interventions.",
+      "url": "https://mykm.dev/work/dialed",
+      "award": "2x winner @ beachhacks",
+      "stack": ["react", "fastapi", "fetch.ai uagents", "browser use"],
       "category": "featured",
       "featured": true
     },
     {
-      "id": "jabby",
-      "name": "jabby",
-      "description": "my discord-native, always-on claude code agent. lives in the background and keeps the work moving.",
-      "url": "",
-      "stack": ["claude code", "discord"],
-      "category": "archive",
-      "featured": false
-    },
-    {
-      "id": "kali-v0",
-      "name": "kali v0",
-      "description": "one chat across 11+ nonprofit tools: donors, grants, finance, programs, and comms, with source-record citations.",
-      "url": "https://github.com/stephenhungg/kali-v0",
-      "award": "winner @ uc davis",
-      "stack": ["next.js", "typescript", "supabase", "claude"],
-      "category": "archive",
-      "featured": false
-    },
-    {
-      "id": "dialed",
-      "name": "dialed",
-      "description": "agents that classify manipulation in social feeds, from rage bait to fomo hooks, and coordinate interventions.",
-      "url": "https://github.com/MatthewKim323/dialed",
-      "award": "2x winner @ csulb",
-      "stack": ["react", "fastapi", "fetch.ai", "browser-use"],
-      "category": "archive",
-      "featured": false
-    },
-    {
       "id": "bro",
       "name": "bro",
-      "description": "personal-agent experiments around knowledge-graph memory and paper trading. public repo: the landing foundation.",
-      "url": "https://github.com/MatthewKim323/bro",
-      "award": "3x winner @ ucr",
-      "stack": ["next.js", "react", "tailwind"],
+      "description": "a personal ai agent with a visible memory graph, live market context, and a paper-trading desk with action traces.",
+      "url": "https://mykm.dev/work/bro",
+      "award": "3x winner @ designverse",
+      "stack": ["react", "mongodb atlas", "backboard", "solana"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "itto",
+      "name": "itto",
+      "description": "a minecraft co-op buddy that follows, mines, fights, crafts, and talks in discord, with fast reflexes and a slower reasoning loop.",
+      "url": "https://mykm.dev/work/itto",
+      "stack": ["mineflayer", "mcp", "sqlite", "discord"],
       "category": "archive",
       "featured": false
     },
     {
-      "id": "ione",
-      "name": "ione",
-      "description": "an ai math tutor in the margin. screen-aware ocr, reasoning, and voice grounded in the learner's own files.",
-      "url": "https://github.com/MatthewKim323/ione",
-      "award": "winner @ cpp",
-      "stack": ["react", "hono", "supabase", "elevenlabs"],
+      "id": "gopal",
+      "name": "gopal",
+      "description": "a real-time voice and vision companion for browser cameras and apple vision pro, embodied as a 3d character.",
+      "url": "https://mykm.dev/work/gopal",
+      "stack": ["three.js", "openai realtime", "webrtc", "bun"],
       "category": "archive",
       "featured": false
     },
     {
-      "id": "iris",
-      "name": "iris",
-      "description": "prompt-driven video editing for localized reality changes and continuity across frames.",
-      "url": "https://github.com/stephenhungg/iris",
-      "award": "2nd place",
-      "stack": ["react", "fastapi", "sam", "clip"],
+      "id": "cadence",
+      "name": "cadence",
+      "description": "a multi-agent writing studio that learns your voice, drafts in your style, and iterates with detector feedback.",
+      "url": "https://mykm.dev/work/cadence",
+      "stack": ["react", "fastapi", "fetch.ai", "claude"],
       "category": "archive",
       "featured": false
     },
     {
-      "id": "angel",
-      "name": "angel",
-      "description": "a kawaii desktop coworker with an embodied room, persistent memory, and an agent loop that ships code.",
-      "url": "https://github.com/stephenhungg/angel",
-      "award": "nozomio hackathon winner",
-      "stack": ["electron", "react three fiber", "convex", "nia"],
+      "id": "tapn",
+      "name": "tapn",
+      "description": "six agents for job discovery, tailored resumes, applications, scheduling, and voice interview practice.",
+      "url": "https://mykm.dev/work/tapn",
+      "stack": ["react", "supabase", "openclaw", "elevenlabs"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "syla",
+      "name": "syla",
+      "description": "the academic context layer for ai. sync canvas into a classroom brain that chatgpt can query through mcp.",
+      "url": "https://github.com/MatthewKim323/syla_export",
+      "stack": ["typescript", "next.js", "postgres", "mcp"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "editskill",
+      "name": "editskill",
+      "description": "agent prompts to demo videos. capture a website, edit a recordly project, and render an mp4 in headless chromium.",
+      "url": "https://github.com/MatthewKim323/editskill",
+      "stack": ["python", "node.js", "chromium", "recordly"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "1to1",
+      "name": "1to1",
+      "description": "measure a live website, rebuild its layout and motion, then verify the result with pixel diffs across breakpoints.",
+      "url": "https://github.com/MatthewKim323/1to1",
+      "stack": ["typescript", "bun", "chromium"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "nerve",
+      "name": "nerve",
+      "description": "a little intent, a lot more possible. local-first computer use with single-switch input, experimental gaze, and explicit action approval.",
+      "url": "https://github.com/MatthewKim323/agarstra",
+      "stack": ["typescript", "react", "onnx", "mediapipe"],
       "category": "archive",
       "featured": false
     },
@@ -146,24 +194,6 @@
       "description": "a ucsb schedule builder: xgboost over 104k course rows and 17 years of grades, plus a 44ms median integer-program scheduler.",
       "url": "https://github.com/MatthewKim323/aceds",
       "stack": ["python", "xgboost", "pulp", "fastapi"],
-      "category": "archive",
-      "featured": false
-    },
-    {
-      "id": "cadence",
-      "name": "cadence",
-      "description": "a multi-agent writing studio that learns your voice, drafts in your style, and iterates with detector feedback.",
-      "url": "https://github.com/MatthewKim323/cadence",
-      "stack": ["react", "fastapi", "fetch.ai", "claude"],
-      "category": "archive",
-      "featured": false
-    },
-    {
-      "id": "tapn",
-      "name": "tapn",
-      "description": "six agents for job discovery, tailored resumes, applications, scheduling, and voice interview practice.",
-      "url": "https://github.com/MatthewKim323/tapn",
-      "stack": ["react", "supabase", "openclaw", "elevenlabs"],
       "category": "archive",
       "featured": false
     },
@@ -222,10 +252,5 @@
       "featured": false
     }
   ],
-  "now": [
-    "turning agent prompts into editable demo videos with editskill.",
-    "measuring layout and motion instead of guessing with 1to1.",
-    "exploring minimal-input computer use with nerve.",
-    "building persistent academic context with syla."
-  ]
+  "now": ["persistent memory and background agents that keep working between conversations.", "full-duplex voice: listening, reasoning, speaking, and acting at the same time.", "multimodal perception and computer use.", "one brain, many bodies: jabby in discord, agartha in minecraft."]
 }

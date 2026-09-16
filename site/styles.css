@@ -593,7 +593,7 @@ h2 {
   .brand-glyph {
     font-size:21px;
   }
-  .header-github {
+  .header-portfolio {
     display:none;
   }
   .hero-copy {
@@ -728,6 +728,7 @@ h2 {
   }
   .contact-links {
     flex-direction:row;
+    flex-wrap:wrap;
     gap:28px;
     align-items:center;
     padding:0;

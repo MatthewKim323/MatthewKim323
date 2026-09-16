@@ -21,7 +21,7 @@ ${picture('ocean','Moonlight over a quiet ocean, drawn in animated ASCII charact
 
 <samp>${html(profile.tagline)}</samp>
 
-${profile.links.map(l=>`[${md(l.label)}](${l.url})`).join(' &nbsp; / &nbsp; ')} &nbsp; / &nbsp; [website ↗](${site})
+${profile.links.map(l=>`[${md(l.label)}](${l.url})`).join(' &nbsp; / &nbsp; ')}
 
 </div>
 

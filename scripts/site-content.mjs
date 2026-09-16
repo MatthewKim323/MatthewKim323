@@ -42,6 +42,8 @@ export function renderContacts(profile) {
 export function renderProfileHtml(template, profile) {
   const featured = profile.projects.filter(project => project.category !== 'tool' && (project.featured || project.category === 'featured'));
   const archive = profile.projects.filter(project => !project.featured && project.category === 'archive');
+  const portfolio = profile.links.find(link => link.label === 'portfolio');
+  const portfolioUrl = safeUrl(portfolio?.url);
   const [first, ...last] = profile.name.split(/\s+/);
   const heroName = last.length
     ? `<span>${text(first)}</span><br><span>${text(last.join(' '))}<span class="title-period">.</span></span>`
@@ -49,6 +51,7 @@ export function renderProfileHtml(template, profile) {
   const slots = {
     NAME: text(profile.name),
     HANDLE: text(profile.handle.toLowerCase()),
+    PORTFOLIO_LINK: portfolioUrl ? `<a class="quiet-link header-portfolio" href="${text(portfolioUrl)}">${text(portfolio.label)} ${arrow}</a>` : '',
     PAGE_TITLE: text(`${profile.name} / ${profile.tagline}`),
     DESCRIPTION: text(`${profile.name}. ${profile.headline} Selected work beneath a moonlit ASCII ocean.`),
     HERO_NAME: heroName,

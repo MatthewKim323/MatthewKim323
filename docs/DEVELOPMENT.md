@@ -20,7 +20,7 @@ npm run dev
 
 ## Content and assets
 
-Edit `data/profile.json` for biography, links, and project descriptions. The public README and site contain 16 projects; the six `tool` category records are retained only as editorial reference. Keep the same filtering rule in both generators. Research sources and claim boundaries live in [CONTENT.md](CONTENT.md).
+Edit `data/profile.json` for biography, links, and project descriptions. The public README and site contain 19 projects; the six `tool` category records are retained only as editorial reference. Keep the same filtering rule in both generators. Research sources and claim boundaries live in [CONTENT.md](CONTENT.md).
 
 Run `npm run generate` after content or renderer changes. Do not hand-edit generated README sections or graphics. `scripts/site-content.mjs` writes the public portfolio into HTML at build time, including the archive and contacts. JavaScript enhances the scene and preference controls; it does not construct or fetch the project list.
 
@@ -36,7 +36,7 @@ When changing export quality, compare motion smoothness, file size, and the loop
 
 ## Verification
 
-Run `npm run check` and `npm run test:e2e`. Keep tests aligned with the ocean experience: deterministic frames, cycle continuity, actual visible wave motion, pause persistence, reduced motion, theme changes, and hidden/offscreen suspension. Content checks must cover all 16 public projects and ensure editorial-only skill records are excluded.
+Run `npm run check` and `npm run test:e2e`. Keep tests aligned with the ocean experience: deterministic frames, cycle continuity, actual visible wave motion, pause persistence, reduced motion, theme changes, and hidden/offscreen suspension. Content checks must cover all 19 public projects and ensure editorial-only skill records are excluded.
 
 Inspect the README in GitHub's renderer and the site at desktop and mobile sizes. Check the still fallback with JavaScript disabled and with the renderer unavailable. Confirm readable colors in both themes, no horizontal overflow, and usable keyboard navigation. Automated accessibility checks supplement visual and keyboard inspection.
 

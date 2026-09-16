@@ -10,9 +10,9 @@
 
 # matt kim
 
-<samp>for the love of the game.</samp>
+<samp>building things people would actually use.</samp>
 
-[github](https://github.com/MatthewKim323) &nbsp; / &nbsp; [email](mailto:founders@kalilabs.ai) &nbsp; / &nbsp; [website ↗](https://matthewkim323.github.io/MatthewKim323/)
+[portfolio](https://mykm.dev) &nbsp; / &nbsp; [github](https://github.com/MatthewKim323) &nbsp; / &nbsp; [linkedin](https://www.linkedin.com/in/matthew-y-kim) &nbsp; / &nbsp; [x](https://x.com/matthewykim23) &nbsp; / &nbsp; [devpost](https://devpost.com/matthewykim23) &nbsp; / &nbsp; [resume](https://mykm.dev/matthew-resume.pdf) &nbsp; / &nbsp; [email](mailto:matthewykim23@gmail.com)
 
 </div>
 
@@ -21,19 +21,79 @@
   <img src="./assets/heading-about-light.svg" width="760" alt="about">
 </picture>
 
-> i build agents, context systems, and the tools to ship them\.<br>
-> 13x hackathon winner.
+> full\-stack and agentic engineer building persistent agents and real\-time systems\.<br>
+> 13 hackathon wins in 6 months.
 
-builder working across ai agents, infrastructure, and interfaces with a little personality\.
+i started with a python text adventure in middle school\. that curiosity grew into state\-level robotics, hackathons, and a habit of learning whatever a problem needs to get it shipped\.
 
-persistent context\. useful autonomy\. software that feels alive\.
+building kali labs\. san francisco / ucsb, studying stats &amp; data science and economics\. i like turning frontier models into products that are fast, reliable, and actually useful\.
 
-<samp>ai agents &nbsp; / &nbsp; context &amp; memory &nbsp; / &nbsp; creative tools &nbsp; / &nbsp; infrastructure</samp>
+<samp>persistent context &nbsp; / &nbsp; embodied agents &nbsp; / &nbsp; real-time voice &nbsp; / &nbsp; computer use</samp>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-work-dark.svg">
   <img src="./assets/heading-work-light.svg" width="760" alt="selected work">
 </picture>
+
+**[agartha](https://mykm.dev/work/agartha)** · insforge winner @ agi summit 2026<br>
+a minecraft companion that talks and acts at the same time, with memory shared across sessions through jabby\.<br>
+<sub>typescript · gemini live · mineflayer · gbrain</sub>
+
+**[jabby](https://mykm.dev/work/jabby)**<br>
+my discord\-native, always\-on agent\. background jobs, live voice calls, persistent memory, and a minecraft body\.<br>
+<sub>typescript · discord · claude code · gbrain</sub>
+
+**[angel](https://mykm.dev/work/angel)** · best overall @ nozomio ai agents hackathon<br>
+a kawaii ai coworker with persistent memory, a 3d desk, and agents that work alongside you\.<br>
+<sub>react · three.js · convex · codex</sub>
+
+**[iris](https://mykm.dev/work/iris)** · 2nd place overall @ citrushacks<br>
+select a region, describe an edit, and carry that change across a video while preserving continuity\.<br>
+<sub>react · fastapi · sam · ffmpeg</sub>
+
+**[nami](https://mykm.dev/work/nami)** · 1st @ fullyhacks<br>
+a pixel\-art counseling office for first\-gen students, with knowledge\-graph answers grounded in their own source files\.<br>
+<sub>next.js · supabase · pixijs · claude</sub>
+
+**[ione](https://mykm.dev/work/ione)** · 1x winner @ broncohacks<br>
+an ai math tutor in the margin: screen\-aware ocr, reasoning, and voice grounded in the learner's files\.<br>
+<sub>react · hono · supabase · elevenlabs</sub>
+
+**[kali v0](https://mykm.dev/work/kali-v0)** · 1x winner @ hackdavis<br>
+one chat across 11\+ nonprofit tools: donors, grants, finance, programs, and comms, with source\-record citations\.<br>
+<sub>next.js · claude · supabase · drizzle</sub>
+
+**[flow](https://mykm.dev/work/flow)** · 2x winner @ sbhacks<br>
+speak a concept, step inside a gaussian\-splat world, and explore it with an ai narrator\.<br>
+<sub>react · three.js · world labs · elevenlabs</sub>
+
+**[dialed](https://mykm.dev/work/dialed)** · 2x winner @ beachhacks<br>
+agents that watch social feeds, identify manipulation patterns, and coordinate real\-time interventions\.<br>
+<sub>react · fastapi · fetch.ai uagents · browser use</sub>
+
+**[bro](https://mykm.dev/work/bro)** · 3x winner @ designverse<br>
+a personal ai agent with a visible memory graph, live market context, and a paper\-trading desk with action traces\.<br>
+<sub>react · mongodb atlas · backboard · solana</sub>
+
+<details>
+<summary><strong>more things i've built</strong></summary>
+<br>
+
+**[itto](https://mykm.dev/work/itto)**<br>
+a minecraft co\-op buddy that follows, mines, fights, crafts, and talks in discord, with fast reflexes and a slower reasoning loop\.<br>
+<sub>mineflayer · mcp · sqlite · discord</sub>
+
+**[gopal](https://mykm.dev/work/gopal)**<br>
+a real\-time voice and vision companion for browser cameras and apple vision pro, embodied as a 3d character\.<br>
+<sub>three.js · openai realtime · webrtc · bun</sub>
+
+**[cadence](https://mykm.dev/work/cadence)**<br>
+a multi\-agent writing studio that learns your voice, drafts in your style, and iterates with detector feedback\.<br>
+<sub>react · fastapi · fetch.ai · claude</sub>
+
+**[tapn](https://mykm.dev/work/tapn)**<br>
+six agents for job discovery, tailored resumes, applications, scheduling, and voice interview practice\.<br>
+<sub>react · supabase · openclaw · elevenlabs</sub>
 
 **[syla](https://github.com/MatthewKim323/syla_export)**<br>
 the academic context layer for ai\. sync canvas into a classroom brain that chatgpt can query through mcp\.<br>
@@ -51,57 +111,9 @@ measure a live website, rebuild its layout and motion, then verify the result wi
 a little intent, a lot more possible\. local\-first computer use with single\-switch input, experimental gaze, and explicit action approval\.<br>
 <sub>typescript · react · onnx · mediapipe</sub>
 
-**[flow](https://github.com/stephenhungg/flow)** · 2x winner @ sbhacks<br>
-speak a concept, step inside a gaussian\-splat world, and explore it with an ai narrator\.<br>
-<sub>react · three.js · world labs · elevenlabs</sub>
-
-**[nami](https://github.com/MatthewKim323/nami)** · 1st place @ fullyhacks<br>
-a pixel\-art counseling crew for first\-gen students\. knowledge\-graph answers linked to the student's own source files\.<br>
-<sub>next.js · drizzle · supabase</sub>
-
-<details>
-<summary><strong>more things i've built</strong></summary>
-<br>
-
-**jabby**<br>
-my discord\-native, always\-on claude code agent\. lives in the background and keeps the work moving\.<br>
-<sub>claude code · discord</sub>
-
-**[kali v0](https://github.com/stephenhungg/kali-v0)** · winner @ uc davis<br>
-one chat across 11\+ nonprofit tools: donors, grants, finance, programs, and comms, with source\-record citations\.<br>
-<sub>next.js · typescript · supabase · claude</sub>
-
-**[dialed](https://github.com/MatthewKim323/dialed)** · 2x winner @ csulb<br>
-agents that classify manipulation in social feeds, from rage bait to fomo hooks, and coordinate interventions\.<br>
-<sub>react · fastapi · fetch.ai · browser-use</sub>
-
-**[bro](https://github.com/MatthewKim323/bro)** · 3x winner @ ucr<br>
-personal\-agent experiments around knowledge\-graph memory and paper trading\. public repo: the landing foundation\.<br>
-<sub>next.js · react · tailwind</sub>
-
-**[ione](https://github.com/MatthewKim323/ione)** · winner @ cpp<br>
-an ai math tutor in the margin\. screen\-aware ocr, reasoning, and voice grounded in the learner's own files\.<br>
-<sub>react · hono · supabase · elevenlabs</sub>
-
-**[iris](https://github.com/stephenhungg/iris)** · 2nd place<br>
-prompt\-driven video editing for localized reality changes and continuity across frames\.<br>
-<sub>react · fastapi · sam · clip</sub>
-
-**[angel](https://github.com/stephenhungg/angel)** · nozomio hackathon winner<br>
-a kawaii desktop coworker with an embodied room, persistent memory, and an agent loop that ships code\.<br>
-<sub>electron · react three fiber · convex · nia</sub>
-
 **[ace](https://github.com/MatthewKim323/aceds)**<br>
 a ucsb schedule builder: xgboost over 104k course rows and 17 years of grades, plus a 44ms median integer\-program scheduler\.<br>
 <sub>python · xgboost · pulp · fastapi</sub>
-
-**[cadence](https://github.com/MatthewKim323/cadence)**<br>
-a multi\-agent writing studio that learns your voice, drafts in your style, and iterates with detector feedback\.<br>
-<sub>react · fastapi · fetch.ai · claude</sub>
-
-**[tapn](https://github.com/MatthewKim323/tapn)**<br>
-six agents for job discovery, tailored resumes, applications, scheduling, and voice interview practice\.<br>
-<sub>react · supabase · openclaw · elevenlabs</sub>
 
 </details>
 
