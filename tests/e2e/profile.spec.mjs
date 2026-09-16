@@ -117,6 +117,19 @@ test('pointer or touch tracking changes head direction and actual rendered pixel
   }
 });
 
+test('the companion keeps its geometry across responsive stage proportions', async ({ page }) => {
+  await openProfile(page);
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await settleFontsAndLayout(page);
+    const shape = await page.locator(canvasSelector).evaluate(canvas => {
+      const rect = canvas.getBoundingClientRect();
+      return { width: rect.width, height: rect.height, cols: Number(canvas.dataset.cols), rows: Number(canvas.dataset.rows) };
+    });
+    expect(Math.abs(shape.rows - shape.cols * 0.5 * shape.height / shape.width)).toBeLessThanOrEqual(0.5);
+  }
+});
+
 test('explicit light and dark themes persist across reload, and system mode can be restored', async ({ page }) => {
   await openProfile(page);
   for (const theme of ['light', 'dark']) {

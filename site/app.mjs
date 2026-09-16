@@ -52,7 +52,7 @@ async function startBot() {
     console.warn('ASCII companion is using its static fallback.', error);
     return;
   }
-  const { renderAscii, idlePose, advanceSpring } = engine;
+  const { renderAscii, idlePose, advanceSpring, CHARACTER_ASPECT } = engine;
   if (![renderAscii, idlePose, advanceSpring].every(item => typeof item === 'function')) return;
 
   const pointerPreference = matchMedia('(hover: hover) and (pointer: fine)');
@@ -173,7 +173,7 @@ async function startBot() {
     drawHeight = Math.max(1, rect.height);
     dpr = Math.min(devicePixelRatio || 1, 2);
     cols = drawWidth < 320 ? 72 : drawWidth < 430 ? 84 : 96;
-    rows = Math.round(cols * .52);
+    rows = Math.round(cols * CHARACTER_ASPECT * drawHeight / drawWidth);
     canvas.width = Math.round(drawWidth * dpr);
     canvas.height = Math.round(drawHeight * dpr);
     canvas.dataset.cols = String(cols);
