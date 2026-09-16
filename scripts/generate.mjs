@@ -1,12 +1,12 @@
-import { readJSON, validateProfile, writeChanged } from './lib.mjs';
+import { readJSON, validateProfile, validateActivity, writeChanged, escapeMarkdown as md, escapeXML as html } from './lib.mjs';
 import { botGraphic, headingGraphic, activityGraphic, languageGraphic } from './graphics.mjs';
 
 const profile=validateProfile(await readJSON('data/profile.json'));
-const activity=await readJSON('data/activity.json');
+const activity=validateActivity(await readJSON('data/activity.json'));
 const site='https://matthewkim323.github.io/MatthewKim323/';
 const picture=(name,alt,width=760)=>`<picture>\n  <source media="(prefers-color-scheme: dark)" srcset="./assets/${name}-dark.svg">\n  <img src="./assets/${name}-light.svg" width="${width}" alt="${alt}">\n</picture>`;
 const section=(label,index)=>picture(`heading-${index}`,label);
-const projectLine=p=>`**${p.url?`[${p.name}](${p.url})`:p.name}**${p.award?` · ${p.award}`:''}<br>\n${p.description}${p.stack.length?`<br>\n<sub>${p.stack.join(' · ')}</sub>`:''}`;
+const projectLine=p=>`**${p.url?`[${md(p.name)}](${p.url})`:md(p.name)}**${p.award?` · ${md(p.award)}`:''}<br>\n${md(p.description)}${p.stack.length?`<br>\n<sub>${html(p.stack.join(' · '))}</sub>`:''}`;
 const featured=profile.projects.filter(p=>p.featured);
 const archive=profile.projects.filter(p=>!p.featured&&p.category!=='tool');
 const tools=profile.projects.filter(p=>!p.featured&&p.category==='tool');
@@ -15,25 +15,25 @@ const readme=`<!-- Generated from data/profile.json by npm run generate. See doc
 <div align="center">
 
 <a href="${site}" aria-label="Meet matt's interactive ASCII bot">
-${picture('bot','An original ASCII robot. Click to meet the cursor-tracking version.',620)}
+${picture('bot','A floating ASCII companion. Click to meet the cursor-tracking version.',620)}
 </a>
 
-# ${profile.name}
+# ${md(profile.name)}
 
-<samp>${profile.tagline}</samp>
+<samp>${html(profile.tagline)}</samp>
 
-${profile.links.map(l=>`[${l.label}](${l.url})`).join(' &nbsp; / &nbsp; ')} &nbsp; / &nbsp; [meet the bot ↗](${site})
+${profile.links.map(l=>`[${md(l.label)}](${l.url})`).join(' &nbsp; / &nbsp; ')} &nbsp; / &nbsp; [meet the bot ↗](${site})
 
 </div>
 
 ${section('about',1)}
 
-> ${profile.headline}<br>
-> ${profile.awardsLabel}.
+> ${md(profile.headline)}<br>
+> ${md(profile.awardsLabel)}.
 
-${profile.bio.join('\n\n')}
+${profile.bio.map(md).join('\n\n')}
 
-<samp>${profile.focus.join(' &nbsp; / &nbsp; ')}</samp>
+<samp>${profile.focus.map(html).join(' &nbsp; / &nbsp; ')}</samp>
 
 ${section('selected work',2)}
 

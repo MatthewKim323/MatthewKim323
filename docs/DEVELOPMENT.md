@@ -33,7 +33,7 @@ GitHub may delay scheduled runs. If a refresh fails, committed graphics keep loa
 
 ## Character design
 
-The character is an original floating orb with rounded pill eyes, a curious tilt, and a gentle idle performance. A shared renderer keeps the GitHub image and live interaction consistent. The first armored concept remains in commit history; the shipped design follows the softer reference selected by matt.
+The character is an original floating orb with rounded pill eyes, a curious tilt, and a gentle idle performance. A shared renderer keeps the GitHub image and live interaction consistent.
 
 ## Verification and release
 

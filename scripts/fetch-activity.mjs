@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { writeChanged, summarizeActivity } from './lib.mjs';
+import { writeChanged, summarizeActivity, validateActivity } from './lib.mjs';
 
 const query = `query ProfileActivity($login: String!, $cursor: String) {
   user(login: $login) {
@@ -39,5 +39,6 @@ const snapshot = {
   languages:[...languages].sort((a,b)=>b[1]-a[1]).map(([name,bytes])=>({name,bytes,percent:Math.round(bytes/languageBytes*1000)/10})),
   days
 };
+validateActivity(snapshot);
 const changed = await writeChanged('data/activity.json', JSON.stringify(snapshot,null,2)+'\n');
 console.log(`${changed?'Updated':'Unchanged'} activity snapshot: ${summary.total} contributions, ${summary.activeDays} active days, ${repos.length} public repositories.`);

@@ -1,9 +1,10 @@
 import { cp, mkdir, rm, writeFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { root, readJSON, validateProfile, escapeXML } from './lib.mjs';
+import { root, readJSON, validateProfile, validateActivity, escapeXML } from './lib.mjs';
 import { renderProfileHtml } from './site-content.mjs';
 
 const profile=validateProfile(await readJSON('data/profile.json'));
+validateActivity(await readJSON('data/activity.json'));
 const out=path.join(root,'dist');
 await rm(out,{recursive:true,force:true});
 await mkdir(out,{recursive:true});
