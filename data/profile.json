@@ -1,0 +1,231 @@
+{
+  "name": "matt kim",
+  "handle": "MatthewKim323",
+  "tagline": "for the love of the game.",
+  "headline": "i build agents, context systems, and the tools to ship them.",
+  "bio": [
+    "builder working across ai agents, infrastructure, and interfaces with a little personality.",
+    "persistent context. useful autonomy. software that feels alive."
+  ],
+  "email": "founders@kalilabs.ai",
+  "links": [
+    { "label": "github", "url": "https://github.com/MatthewKim323" },
+    { "label": "email", "url": "mailto:founders@kalilabs.ai" }
+  ],
+  "focus": ["ai agents", "context & memory", "creative tools", "infrastructure"],
+  "awardsLabel": "13x hackathon winner",
+  "projects": [
+    {
+      "id": "syla",
+      "name": "syla",
+      "description": "the academic context layer for ai. sync canvas into a classroom brain that chatgpt can query through mcp.",
+      "url": "https://github.com/MatthewKim323/syla_export",
+      "stack": ["typescript", "next.js", "postgres", "mcp"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "editskill",
+      "name": "editskill",
+      "description": "agent prompts to demo videos. capture a website, edit a recordly project, and render an mp4 in headless chromium.",
+      "url": "https://github.com/MatthewKim323/editskill",
+      "stack": ["python", "node.js", "chromium", "recordly"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "1to1",
+      "name": "1to1",
+      "description": "measure a live website, rebuild its layout and motion, then verify the result with pixel diffs across breakpoints.",
+      "url": "https://github.com/MatthewKim323/1to1",
+      "stack": ["typescript", "bun", "chromium"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "nerve",
+      "name": "nerve",
+      "description": "a little intent, a lot more possible. local-first computer use with single-switch input, experimental gaze, and explicit action approval.",
+      "url": "https://github.com/MatthewKim323/agarstra",
+      "stack": ["typescript", "react", "onnx", "mediapipe"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "flow",
+      "name": "flow",
+      "description": "speak a concept, step inside a gaussian-splat world, and explore it with an ai narrator.",
+      "url": "https://github.com/stephenhungg/flow",
+      "award": "2x winner @ sbhacks",
+      "stack": ["react", "three.js", "world labs", "elevenlabs"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "nami",
+      "name": "nami",
+      "description": "a pixel-art counseling crew for first-gen students. knowledge-graph answers linked to the student's own source files.",
+      "url": "https://github.com/MatthewKim323/nami",
+      "award": "1st place @ fullyhacks",
+      "stack": ["next.js", "drizzle", "supabase"],
+      "category": "featured",
+      "featured": true
+    },
+    {
+      "id": "jabby",
+      "name": "jabby",
+      "description": "my discord-native, always-on claude code agent. lives in the background and keeps the work moving.",
+      "url": "",
+      "stack": ["claude code", "discord"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "kali-v0",
+      "name": "kali v0",
+      "description": "one chat across 11+ nonprofit tools: donors, grants, finance, programs, and comms, with source-record citations.",
+      "url": "https://github.com/stephenhungg/kali-v0",
+      "award": "winner @ uc davis",
+      "stack": ["next.js", "typescript", "supabase", "claude"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "dialed",
+      "name": "dialed",
+      "description": "agents that classify manipulation in social feeds, from rage bait to fomo hooks, and coordinate interventions.",
+      "url": "https://github.com/MatthewKim323/dialed",
+      "award": "2x winner @ csulb",
+      "stack": ["react", "fastapi", "fetch.ai", "browser-use"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "bro",
+      "name": "bro",
+      "description": "personal-agent experiments around knowledge-graph memory and paper trading. public repo: the landing foundation.",
+      "url": "https://github.com/MatthewKim323/bro",
+      "award": "3x winner @ ucr",
+      "stack": ["next.js", "react", "tailwind"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "ione",
+      "name": "ione",
+      "description": "an ai math tutor in the margin. screen-aware ocr, reasoning, and voice grounded in the learner's own files.",
+      "url": "https://github.com/MatthewKim323/ione",
+      "award": "winner @ cpp",
+      "stack": ["react", "hono", "supabase", "elevenlabs"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "iris",
+      "name": "iris",
+      "description": "prompt-driven video editing for localized reality changes and continuity across frames.",
+      "url": "https://github.com/stephenhungg/iris",
+      "award": "2nd place",
+      "stack": ["react", "fastapi", "sam", "clip"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "angel",
+      "name": "angel",
+      "description": "a kawaii desktop coworker with an embodied room, persistent memory, and an agent loop that ships code.",
+      "url": "https://github.com/stephenhungg/angel",
+      "award": "nozomio hackathon winner",
+      "stack": ["electron", "react three fiber", "convex", "nia"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "aceds",
+      "name": "ace",
+      "description": "a ucsb schedule builder: xgboost over 104k course rows and 17 years of grades, plus a 44ms median integer-program scheduler.",
+      "url": "https://github.com/MatthewKim323/aceds",
+      "stack": ["python", "xgboost", "pulp", "fastapi"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "cadence",
+      "name": "cadence",
+      "description": "a multi-agent writing studio that learns your voice, drafts in your style, and iterates with detector feedback.",
+      "url": "https://github.com/MatthewKim323/cadence",
+      "stack": ["react", "fastapi", "fetch.ai", "claude"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "tapn",
+      "name": "tapn",
+      "description": "six agents for job discovery, tailored resumes, applications, scheduling, and voice interview practice.",
+      "url": "https://github.com/MatthewKim323/tapn",
+      "stack": ["react", "supabase", "openclaw", "elevenlabs"],
+      "category": "archive",
+      "featured": false
+    },
+    {
+      "id": "prodcheck",
+      "name": "prodcheck",
+      "description": "production readiness audits across eight dimensions, with line-level findings and concrete fixes.",
+      "url": "https://github.com/MatthewKim323/prodcheck",
+      "stack": ["claude code skill"],
+      "category": "tool",
+      "featured": false
+    },
+    {
+      "id": "seccheck",
+      "name": "seccheck",
+      "description": "security reviews across ten domains, including prompt injection, agent authorization, and model spend limits.",
+      "url": "https://github.com/MatthewKim323/seccheck",
+      "stack": ["claude code skill"],
+      "category": "tool",
+      "featured": false
+    },
+    {
+      "id": "prwrite",
+      "name": "prwrite",
+      "description": "pull request descriptions grounded in the diff, issue references, risk, and the repository's template.",
+      "url": "https://github.com/MatthewKim323/prwrite",
+      "stack": ["claude code skill"],
+      "category": "tool",
+      "featured": false
+    },
+    {
+      "id": "testwrite",
+      "name": "testwrite",
+      "description": "test generation across happy paths, boundaries, failures, abuse, idempotency, and regressions.",
+      "url": "https://github.com/MatthewKim323/testwrite",
+      "stack": ["claude code skill"],
+      "category": "tool",
+      "featured": false
+    },
+    {
+      "id": "contextcheck",
+      "name": "contextcheck",
+      "description": "check code against a company's stack, engineering patterns, and compliance expectations.",
+      "url": "https://github.com/MatthewKim323/contextcheck",
+      "stack": ["claude code skill"],
+      "category": "tool",
+      "featured": false
+    },
+    {
+      "id": "research",
+      "name": "research",
+      "description": "company research that can feed a persistent gbrain knowledge base.",
+      "url": "https://github.com/MatthewKim323/research",
+      "stack": ["claude code skill", "gbrain"],
+      "category": "tool",
+      "featured": false
+    }
+  ],
+  "now": [
+    "turning agent prompts into editable demo videos with editskill.",
+    "measuring layout and motion instead of guessing with 1to1.",
+    "exploring minimal-input computer use with nerve.",
+    "building persistent academic context with syla."
+  ]
+}
