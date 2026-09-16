@@ -1,44 +1,49 @@
 # Developing this profile
 
-This repository builds two public surfaces from one set of content and one ASCII character engine:
+This repository produces a GitHub profile README and a companion page from shared content and a shared moonlit ocean renderer. Engineering details stay in these documents, not in the public introduction or project list.
 
-- `README.md` and `assets/`: the profile displayed on github.com/MatthewKim323.
-- `site/`: the interactive companion published through GitHub Pages. The build writes all project content into HTML, so every entry and the native archive disclosure work without JavaScript.
+The companion page is published at [matthewkim323.github.io/MatthewKim323](https://matthewkim323.github.io/MatthewKim323/). The repository path is part of the Pages URL.
 
-The Pages address is **https://matthewkim323.github.io/MatthewKim323/**. This repository is named after the account, not `MatthewKim323.github.io`, so its Pages URL has a repository path.
+## Local workflow
 
-## Local development
+Use Node 24 from `.nvmrc`.
 
-Use Node 24 (`.nvmrc`). Install with `npm ci`, then run `npm run check` and `npm run dev`. The server prints its URL and serves only the built `dist/` directory. After source edits, rebuild with `npm run build`.
+```sh
+npm ci
+npm run check
+npx playwright install chromium
+npm run test:e2e
+npm run dev
+```
 
-`npm test` runs deterministic engine, content, generation, and build tests. `npm run test:e2e` runs desktop/mobile browser behavior and accessibility checks after `npx playwright install chromium`. CI installs its browser independently.
+`check` generates assets, runs unit tests, and builds the site. `dev` serves only the built `dist/` directory and prints its URL. After source edits, run `npm run check` again before browser verification.
 
-## Content and generated files
+## Content and assets
 
-Edit `data/profile.json` for biography, links, and project descriptions. Run `npm run generate` to update the profile. Do not hand-edit generated README sections or graphics: generation replaces them. Research sources and claim boundaries live in `docs/CONTENT.md`.
+Edit `data/profile.json` for biography, links, and project descriptions. The public README and site contain 16 projects; the six `tool` category records are retained only as editorial reference. Keep the same filtering rule in both generators. Research sources and claim boundaries live in [CONTENT.md](CONTENT.md).
 
-`npm run stats` reads GitHub through the authenticated `gh` CLI. It writes a validated public activity snapshot to `data/activity.json`. `npm run generate` then draws the activity graphic. Rendering and tests also work offline with the committed snapshot. A failed network refresh leaves the last successful snapshot intact.
+Run `npm run generate` after content or renderer changes. Do not hand-edit generated README sections or graphics. `scripts/site-content.mjs` writes the public portfolio into HTML at build time, including the archive and contacts. JavaScript enhances the scene and preference controls; it does not construct or fetch the project list.
 
-## Motion and accessibility
+`npm run stats` uses the authenticated `gh` CLI to refresh `data/activity.json`. The fetcher validates the response before writing; a failure preserves the committed snapshot. Generation and tests work offline with that snapshot. Activity describes GitHub-reported contributions and public repository language bytes, with the date range retained in the data.
 
-GitHub renders the bot as an SVG image with a deterministic idle animation. Images cannot read cursor coordinates. The Pages version uses the same geometry and character palette with real pointer input, independent eye/head movement, keyboard controls, a pause switch, reduced-motion behavior, and touch support. There is no model inference or backend in the interaction.
+## Ocean motion
 
-Each SVG includes a static first pose and a reduced-motion fallback. The 12-second performance has 96 poses. Light and dark images are selected with `picture`. The site hosts its own font and scripts; no runtime third-party requests are needed. JavaScript enhances gaze, theme, and motion controls; it does not fetch or construct the portfolio content.
+`src/ocean-core.mjs` supplies the same 144 by 58 reference composition and 18-second cycle to Canvas and SVG adapters. The browser animates the ocean locally. GitHub displays a sampled SVG loop. See [OCEAN.md](OCEAN.md) for rendering details.
 
-## Publishing
+The scene supports light and dark palettes, a still fallback, and reduced motion. The site provides pause/resume and suspends rendering while hidden or offscreen. Motion is independent of pointer movement. Fonts and scripts are local; no external service is needed to animate the scene.
 
-The `Validate and publish` workflow validates changes, checks browser behavior, and builds the site. It publishes only validated `main` builds through GitHub's artifact deployment. `Refresh profile` runs daily at 10:23 UTC and can also be dispatched manually. It validates fetched data and generated files before committing only changed content. Its completion triggers a fresh validation and publication, because pushes made with `GITHUB_TOKEN` do not trigger ordinary push workflows. Workflow permissions are scoped to each job, and actions are pinned to immutable commits.
+When changing export quality, compare motion smoothness, file size, and the loop seam at actual profile width. Frame count is an implementation choice, not a public-facing feature or a fixed content contract.
 
-GitHub may delay scheduled runs. If a refresh fails, committed graphics keep loading; its failed Actions run is the diagnostic. No live stats service is required for profile visitors.
+## Verification
 
-## Character design
+Run `npm run check` and `npm run test:e2e`. Keep tests aligned with the ocean experience: deterministic frames, cycle continuity, actual visible wave motion, pause persistence, reduced motion, theme changes, and hidden/offscreen suspension. Content checks must cover all 16 public projects and ensure editorial-only skill records are excluded.
 
-The character is an original floating orb with rounded pill eyes, a curious tilt, and a gentle idle performance. A shared renderer keeps the GitHub image and live interaction consistent.
+Inspect the README in GitHub's renderer and the site at desktop and mobile sizes. Check the still fallback with JavaScript disabled and with the renderer unavailable. Confirm readable colors in both themes, no horizontal overflow, and usable keyboard navigation. Automated accessibility checks supplement visual and keyboard inspection.
 
-## Verification and release
+## Publishing and rollback
 
-Run `npm run check`, then `npm run test:e2e`. Browser checks cover actual rendered pose changes, pause persistence, reduced motion, theme persistence, offscreen suspension, complete content without JavaScript, renderer failure, mobile overflow, and automated WCAG checks in both themes. Automated accessibility tests supplement keyboard and visual inspection; they do not constitute an accessibility certification.
+`Validate and publish` runs validation, browser checks, and the build, then publishes validated `main` builds through GitHub's Pages artifact flow. `Refresh profile` runs daily at 10:23 UTC or by manual dispatch. Its successful completion triggers validation and publication because its `GITHUB_TOKEN` push does not trigger ordinary push workflows. Actions are pinned to immutable commits and permissions are scoped to their jobs.
 
-Before publishing, inspect the generated README in GitHub's renderer and the site at desktop and mobile sizes. Verify the public profile, Pages deployment, and last Actions run after the main branch update. To roll back, revert the relevant commit and push normally; never rewrite shared history.
+Scheduled runs can be delayed. A failed refresh leaves existing graphics available; inspect the failed Actions run for diagnostics. After release, verify the public profile, Pages address, and latest workflow result. Roll back with a normal revert commit, without rewriting shared history.
 
-Keep commits focused on meaningful milestones. Never add credentials, local environment files, private repositories, or personal messages to the content snapshot.
+Keep commits focused on meaningful milestones. Never add credentials, environment files, private repository contents, or personal messages to the content snapshot.

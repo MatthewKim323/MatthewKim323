@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const profile = JSON.parse(await readFile(new URL('../../data/profile.json', import.meta.url), 'utf8'));
-const canvasSelector = '#bot-canvas';
+const canvasSelector = '#ocean-canvas';
 const portfolioProjects = profile.projects.filter(project => project.category !== 'tool');
 const featuredCount = portfolioProjects.filter(project => project.featured || project.category === 'featured').length;
 const archiveCount = profile.projects.filter(project => !project.featured && project.category === 'archive').length;
@@ -27,7 +27,8 @@ async function openProfile(page) {
 
 test('every portfolio project loads with correct content and links, and the archive expands', async ({ page }) => {
   await openProfile(page);
-  await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
+  expect(portfolioProjects).toHaveLength(16);
+  await expect(page.locator('article[data-project]')).toHaveCount(16);
   await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
   await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
   await expect(page.locator('#workbench, #tools-list, .project-index, #work-count, #archive-count')).toHaveCount(0);
@@ -71,9 +72,9 @@ test('the complete portfolio remains within a 320px viewport in both themes', as
 
 test('pause freezes both animation work and canvas pixels; play resumes and preference persists', async ({ page }) => {
   await openProfile(page);
-  await page.getByRole('button', { name: 'Pause companion animation' }).click();
-  await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'paused');
-  await expect(page.getByRole('button', { name: 'Play companion animation' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Pause ocean animation' }).click();
+  await expect(page.locator('.ocean-figure')).toHaveAttribute('data-state', 'paused');
+  await expect(page.getByRole('button', { name: 'Play ocean animation' })).toHaveAttribute('aria-pressed', 'true');
   await settleFontsAndLayout(page);
   const frozenCount = await frameCount(page);
   const frozenPixels = await framePixels(page);
@@ -84,49 +85,38 @@ test('pause freezes both animation work and canvas pixels; play resumes and pref
 
   await page.reload();
   await expect(page.locator(canvasSelector)).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Play companion animation' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Play ocean animation' })).toBeVisible();
   await settleFontsAndLayout(page);
   const restartedCount = await frameCount(page);
-  await page.getByRole('button', { name: 'Play companion animation' }).click();
-  await expect(page.getByRole('button', { name: 'Pause companion animation' })).toHaveAttribute('aria-pressed', 'false');
+  await page.getByRole('button', { name: 'Play ocean animation' }).click();
+  await expect(page.getByRole('button', { name: 'Pause ocean animation' })).toHaveAttribute('aria-pressed', 'false');
   await expect.poll(() => frameCount(page)).toBeGreaterThan(restartedCount + 2);
 });
 
-test('pointer or touch tracking changes head direction and actual rendered pixels', async ({ page }, testInfo) => {
+test('the ocean advances in time and changes its actual rendered pixels', async ({ page }) => {
   await openProfile(page);
   await page.locator(canvasSelector).scrollIntoViewIfNeeded();
-  const bounds = await page.locator('#bot-stage').boundingBox();
-  expect(bounds).not.toBeNull();
-  const input = async fraction => {
-    const x = bounds.x + bounds.width * fraction;
-    const y = bounds.y + bounds.height * 0.5;
-    if (testInfo.project.use.isMobile) await page.touchscreen.tap(x, y);
-    else await page.mouse.move(x, y);
-  };
-  await input(0.15);
-  await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'tracking');
-  await expect.poll(() => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.yaw))).toBeLessThan(-0.15);
-  const left = await framePixels(page);
-  await input(0.85);
-  await expect.poll(() => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.yaw))).toBeGreaterThan(0.15);
-  expect(await framePixels(page)).not.toBe(left);
-  if (testInfo.project.use.isMobile) {
-    // A released tap should hold attention, then return to idle without another input.
-    await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'tracking');
-    await expect(page.locator('.bot-figure')).toHaveAttribute('data-state', 'idle', { timeout: 5000 });
-  }
+  await expect(page.locator('.ocean-figure')).toHaveAttribute('data-state', 'playing');
+  const initialCount = await frameCount(page);
+  const initialTime = await page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.time));
+  const initialPixels = await framePixels(page);
+  await expect.poll(() => frameCount(page)).toBeGreaterThan(initialCount + 5);
+  await expect.poll(() => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.time))).toBeGreaterThan(initialTime);
+  await expect.poll(() => framePixels(page)).not.toBe(initialPixels);
 });
 
-test('the companion keeps its geometry across responsive stage proportions', async ({ page }) => {
+test('the ocean stage stays at a 2:1 ratio across responsive breakpoints', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await openProfile(page);
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await settleFontsAndLayout(page);
-    const shape = await page.locator(canvasSelector).evaluate(canvas => {
-      const rect = canvas.getBoundingClientRect();
-      return { width: rect.width, height: rect.height, cols: Number(canvas.dataset.cols), rows: Number(canvas.dataset.rows) };
+    const shape = await page.locator('#ocean-stage').evaluate(stage => {
+      const rect = stage.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
     });
-    expect(Math.abs(shape.rows - shape.cols * 0.5 * shape.height / shape.width)).toBeLessThanOrEqual(0.5);
+    expect(shape.width).toBeGreaterThan(0);
+    expect(Math.abs(shape.width / shape.height - 2)).toBeLessThan(0.025);
   }
 });
 
@@ -149,12 +139,13 @@ test('explicit light and dark themes persist across reload, and system mode can 
   await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#0d1117');
 });
 
-test('reduced motion starts still, ignores passive pointer input, and supports immediate keyboard poses', async ({ page }) => {
+test('reduced motion starts still, ignores passive pointer input, and permits deliberate play', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await openProfile(page);
   await page.locator(canvasSelector).scrollIntoViewIfNeeded();
   await settleFontsAndLayout(page);
-  await expect(page.getByRole('button', { name: 'Play companion animation' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Play ocean animation' })).toBeVisible();
+  await expect(page.locator('.ocean-figure')).toHaveAttribute('data-state', 'paused');
   const stillCount = await frameCount(page);
   const stillPixels = await framePixels(page);
   await page.mouse.move(10, 10);
@@ -162,27 +153,17 @@ test('reduced motion starts still, ignores passive pointer input, and supports i
   await page.waitForTimeout(250);
   expect(await frameCount(page)).toBe(stillCount);
   expect(await framePixels(page)).toBe(stillPixels);
-
-  const right = page.getByRole('button', { name: 'Make the companion look right' });
-  await right.focus();
-  await right.press('Enter');
-  await expect(page.locator(canvasSelector)).toHaveAttribute('data-yaw', '0.550');
-  await expect(page.locator(canvasSelector)).toHaveAttribute('data-roll', '0.070');
-  expect(await framePixels(page)).not.toBe(stillPixels);
-  const posedCount = await frameCount(page);
-  await page.waitForTimeout(250);
-  expect(await frameCount(page)).toBe(posedCount);
-  await page.getByRole('button', { name: 'Return the companion to idle' }).press('Enter');
-  await expect(page.locator(canvasSelector)).toHaveAttribute('data-yaw', '0.000');
-  await expect(page.locator(canvasSelector)).toHaveAttribute('data-roll', '0.000');
-  await page.getByRole('button', { name: 'Play companion animation' }).click();
-  await expect.poll(() => frameCount(page)).toBeGreaterThan(posedCount + 2);
+  await expect(page.locator('[data-look]')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Play ocean animation' }).click();
+  await expect(page.locator('.ocean-figure')).toHaveAttribute('data-state', 'playing');
+  await expect.poll(() => frameCount(page)).toBeGreaterThan(stillCount + 3);
+  await expect.poll(() => framePixels(page)).not.toBe(stillPixels);
 });
 
-test('moving the companion offscreen suspends rendering and returning resumes it', async ({ page }) => {
+test('moving the ocean offscreen suspends rendering and returning resumes it', async ({ page }) => {
   await openProfile(page);
   await page.locator('.contact-section').scrollIntoViewIfNeeded();
-  await page.waitForFunction(() => document.querySelector('#bot-stage').getBoundingClientRect().bottom < 0);
+  await page.waitForFunction(() => document.querySelector('#ocean-stage').getBoundingClientRect().bottom < 0);
   await settleFontsAndLayout(page);
   const suspended = await frameCount(page);
   await page.waitForTimeout(300);
@@ -206,7 +187,7 @@ test('loads its complete same-origin runtime without broken resources or browser
   });
   await openProfile(page);
   await page.waitForLoadState('networkidle');
-  for (const asset of ['/app.mjs', '/styles.css', '/src/bot-core.mjs']) {
+  for (const asset of ['/app.mjs', '/styles.css', '/src/ocean-core.mjs']) {
     expect(loaded.some(url => url.endsWith(asset)), `required asset loaded: ${asset}`).toBe(true);
   }
   expect(failures).toEqual([]);
@@ -227,12 +208,12 @@ for (const theme of ['light', 'dark']) {
   });
 }
 
-test('an unavailable renderer keeps the complete portfolio and static companion fallback usable', async ({ page }) => {
-  await page.route('**/src/bot-core.mjs', route => route.fulfill({ status: 503, contentType: 'text/javascript', body: '' }));
+test('an unavailable renderer keeps the complete portfolio and static ocean fallback usable', async ({ page }) => {
+  await page.route('**/src/ocean-core.mjs', route => route.fulfill({ status: 503, contentType: 'text/javascript', body: '' }));
   await page.goto('./');
   await expect(page.locator('html')).toHaveAttribute('data-profile-loaded', 'true');
   await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
-  await expect(page.locator('#bot-fallback')).toBeVisible();
+  await expect(page.locator('#ocean-fallback')).toBeVisible();
   await expect(page.locator(canvasSelector)).toBeHidden();
   await expect(page.locator('#motion-toggle')).toBeHidden();
   await expect(page.getByRole('heading', { name: 'built. shipped. still building.' })).toBeVisible();
@@ -240,12 +221,12 @@ test('an unavailable renderer keeps the complete portfolio and static companion 
 
 test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
-  test('every portfolio project, native archive disclosure and the static companion remain available', async ({ page }) => {
+  test('every portfolio project, native archive disclosure and the static ocean remain available', async ({ page }) => {
     await page.goto('./');
     await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
     await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
     await expect(page.locator('#workbench, #tools-list, .project-index, #work-count, #archive-count')).toHaveCount(0);
-    await expect(page.locator('#bot-fallback')).toBeVisible();
+    await expect(page.locator('#ocean-fallback')).toBeVisible();
     await expect(page.locator(canvasSelector)).toBeHidden();
     await expect(page.locator('#motion-toggle')).toBeHidden();
     await expect(page.locator('.theme-picker')).toBeHidden();
