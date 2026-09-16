@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-profile-loaded="true">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#0d1117">
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta property="og:title" content="{{PAGE_TITLE}}">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matthewkim323.github.io/MatthewKim323/">
+    <meta name="twitter:card" content="summary">
+    <title>{{PAGE_TITLE}}</title>
+    <link rel="canonical" href="https://matthewkim323.github.io/MatthewKim323/">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#work">skip to work</a>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#top" aria-label="{{NAME}}, back to top"><span class="brand-glyph" aria-hidden="true">[m]</span> <span>{{HANDLE}}</span></a>
+        <div class="header-right">
+          <a class="quiet-link header-github" href="https://github.com/MatthewKim323">github <span aria-hidden="true">↗</span></a>
+          <fieldset class="theme-picker" hidden>
+            <legend class="sr-only">color theme</legend>
+            <button type="button" data-theme-choice="light" aria-label="Use light theme" aria-pressed="false" title="light theme"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.2"/><path d="M10 1v2m0 14v2M1 10h2m14 0h2M3.6 3.6 5 5m10 10 1.4 1.4M3.6 16.4 5 15M15 5l1.4-1.4"/></svg></button>
+            <button type="button" data-theme-choice="dark" aria-label="Use dark theme" aria-pressed="false" title="dark theme"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16.7 12.8A7.2 7.2 0 0 1 7.2 3.3a7.3 7.3 0 1 0 9.5 9.5Z"/></svg></button>
+            <button type="button" data-theme-choice="system" aria-label="Use system theme" aria-pressed="true" title="system theme"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="11" rx="1.5"/><path d="M10 14v3m-4 0h8"/></svg></button>
+          </fieldset>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="tiny-plus" aria-hidden="true">+</span> builder, through and through</p>
+            <h1 id="hero-title">{{HERO_NAME}}</h1>
+            <p class="hero-tagline" id="tagline">{{TAGLINE}}</p>
+            <p class="hero-description" id="headline">{{HEADLINE}}</p>
+            <div class="hero-links"><a href="#work" class="text-link">explore the work <span aria-hidden="true">↓</span></a><span class="award-mark" id="awards-label">{{AWARDS}}</span></div>
+          </div>
+          <figure class="bot-figure" aria-labelledby="bot-caption">
+            <div class="bot-topline"><span>ascii companion / 001</span><span class="bot-state"><span class="state-dot" aria-hidden="true"></span><span id="bot-state">standby</span></span></div>
+            <div class="bot-stage" id="bot-stage">
+              <canvas id="bot-canvas" role="img" aria-label="An original floating companion rendered entirely from ASCII characters. Its face and eyes follow your pointer." hidden></canvas>
+              <picture class="bot-fallback" id="bot-fallback"><source srcset="./assets/bot-still-dark.svg" media="(prefers-color-scheme: dark)"><img src="./assets/bot-still-light.svg" width="768" height="800" alt="An original floating character with two friendly pill-shaped eyes, drawn entirely from ASCII characters."></picture>
+            </div>
+            <figcaption id="bot-caption">
+              <span id="bot-instruction">a little curiosity, in characters.</span>
+              <button type="button" class="motion-button" id="motion-toggle" aria-pressed="false" hidden><span id="motion-icon" aria-hidden="true">Ⅱ</span><span id="motion-label">pause</span></button>
+            </figcaption>
+            <div class="bot-keyboard" id="bot-keyboard" hidden><span>look</span><button type="button" data-look="left" aria-label="Make the companion look left">←</button><button type="button" data-look="up" aria-label="Make the companion look up">↑</button><button type="button" data-look="down" aria-label="Make the companion look down">↓</button><button type="button" data-look="right" aria-label="Make the companion look right">→</button><button type="button" data-look="center" aria-label="Return the companion to idle">center</button></div>
+          </figure>
+        </section>
+
+        <section class="about-strip" aria-label="About Matt">
+          <p class="section-code">01 / the intent</p>
+          <div class="about-copy" id="bio">{{BIO}}</div>
+          <ul class="focus-list" id="focus-list">{{FOCUS}}</ul>
+        </section>
+
+        <section class="work-section" id="work" aria-labelledby="work-title">
+          <div class="section-heading"><div><p class="section-code">02 / selected work</p><h2 id="work-title">built. shipped. still building.</h2></div><span class="section-note" id="work-count">{{WORK_COUNT}}</span></div>
+          <div class="project-list" id="featured-projects">{{FEATURED_PROJECTS}}</div>
+          <noscript><p class="content-status">the companion follows your cursor when JavaScript is enabled. everything else is right here.</p></noscript>
+          {{ARCHIVE_SECTION}}
+        </section>
+
+        {{TOOLS_SECTION}}
+
+        {{NOW_SECTION}}
+
+        <section class="contact-section" aria-labelledby="contact-title"><p class="section-code">04 / say something</p><div class="contact-row"><h2 id="contact-title">got something<br>worth building?</h2><div class="contact-links" id="contact-links">{{CONTACTS}}</div></div></section>
+      </main>
+
+      <footer class="site-footer"><span>{{NAME}} / <span id="footer-year">2026</span></span><span class="footer-middle">made of characters. built with intent.</span><a class="quiet-link" href="https://github.com/MatthewKim323/MatthewKim323">view source <span aria-hidden="true">↗</span></a></footer>
+    </div>
+  </body>
+</html>

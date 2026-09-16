@@ -1,0 +1,23 @@
+import { cp, mkdir, rm, writeFile, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { root, readJSON, validateProfile, escapeXML } from './lib.mjs';
+import { renderProfileHtml } from './site-content.mjs';
+
+const profile=validateProfile(await readJSON('data/profile.json'));
+const out=path.join(root,'dist');
+await rm(out,{recursive:true,force:true});
+await mkdir(out,{recursive:true});
+await cp(path.join(root,'site'),out,{recursive:true});
+const template = await readFile(path.join(root, 'site/index.html'), 'utf8');
+await writeFile(path.join(out, 'index.html'), renderProfileHtml(template, profile));
+await cp(path.join(root,'src'),path.join(out,'src'),{recursive:true});
+await cp(path.join(root,'assets'),path.join(out,'assets'),{recursive:true});
+await mkdir(path.join(out,'data'),{recursive:true});
+for(const name of ['profile.json','activity.json'])await cp(path.join(root,'data',name),path.join(out,'data',name));
+await writeFile(path.join(out,'.nojekyll'),'');
+await writeFile(path.join(out,'robots.txt'),'User-agent: *\nAllow: /\nSitemap: https://matthewkim323.github.io/MatthewKim323/sitemap.xml\n');
+await writeFile(path.join(out,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://matthewkim323.github.io/MatthewKim323/</loc></url></urlset>\n');
+await writeFile(path.join(out,'404.html'),'<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>page not found / matt kim</title><style>body{font:18px monospace;max-width:42rem;margin:12vh auto;padding:2rem;line-height:1.8;color:#c9d1d9;background:#0d1117}a{color:#9cceff}</style><h1>wrong coordinates.</h1><p>this page does not exist.</p><a href="/MatthewKim323/">back to matt</a></html>');
+const html=await readFile(path.join(out,'index.html'),'utf8');
+if(!html.includes('</html>')||!html.includes('app.mjs'))throw new Error('Incomplete site entrypoint');
+console.log(`Built ${escapeXML(profile.name)} profile into dist/.`);
