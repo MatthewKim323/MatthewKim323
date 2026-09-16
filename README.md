@@ -17,8 +17,8 @@
 </div>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-1-dark.svg">
-  <img src="./assets/heading-1-light.svg" width="760" alt="about">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-about-dark.svg">
+  <img src="./assets/heading-about-light.svg" width="760" alt="about">
 </picture>
 
 > i build agents, context systems, and the tools to ship them\.<br>
@@ -31,8 +31,8 @@ persistent context\. useful autonomy\. software that feels alive\.
 <samp>ai agents &nbsp; / &nbsp; context &amp; memory &nbsp; / &nbsp; creative tools &nbsp; / &nbsp; infrastructure</samp>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-2-dark.svg">
-  <img src="./assets/heading-2-light.svg" width="760" alt="selected work">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-work-dark.svg">
+  <img src="./assets/heading-work-light.svg" width="760" alt="selected work">
 </picture>
 
 **[syla](https://github.com/MatthewKim323/syla_export)**<br>
@@ -106,37 +106,8 @@ six agents for job discovery, tailored resumes, applications, scheduling, and vo
 </details>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-3-dark.svg">
-  <img src="./assets/heading-3-light.svg" width="760" alt="tools i build with">
-</picture>
-
-**[prodcheck](https://github.com/MatthewKim323/prodcheck)**<br>
-production readiness audits across eight dimensions, with line\-level findings and concrete fixes\.<br>
-<sub>claude code skill</sub>
-
-**[seccheck](https://github.com/MatthewKim323/seccheck)**<br>
-security reviews across ten domains, including prompt injection, agent authorization, and model spend limits\.<br>
-<sub>claude code skill</sub>
-
-**[prwrite](https://github.com/MatthewKim323/prwrite)**<br>
-pull request descriptions grounded in the diff, issue references, risk, and the repository's template\.<br>
-<sub>claude code skill</sub>
-
-**[testwrite](https://github.com/MatthewKim323/testwrite)**<br>
-test generation across happy paths, boundaries, failures, abuse, idempotency, and regressions\.<br>
-<sub>claude code skill</sub>
-
-**[contextcheck](https://github.com/MatthewKim323/contextcheck)**<br>
-check code against a company's stack, engineering patterns, and compliance expectations\.<br>
-<sub>claude code skill</sub>
-
-**[research](https://github.com/MatthewKim323/research)**<br>
-company research that can feed a persistent gbrain knowledge base\.<br>
-<sub>claude code skill · gbrain</sub>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-4-dark.svg">
-  <img src="./assets/heading-4-light.svg" width="760" alt="the build log">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-activity-dark.svg">
+  <img src="./assets/heading-activity-light.svg" width="760" alt="the build log">
 </picture>
 
 <picture>
@@ -150,14 +121,3 @@ company research that can feed a persistent gbrain knowledge base\.<br>
 </picture>
 
 <sub>GitHub-reported activity · public repository language bytes · refreshed 2026-09-16</sub>
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/heading-5-dark.svg">
-  <img src="./assets/heading-5-light.svg" width="760" alt="under the hood">
-</picture>
-
-The character is drawn from 3D geometry into a grid of ASCII characters. On GitHub, it runs a quiet idle loop. On the [live page](https://matthewkim323.github.io/MatthewKim323/), its eyes and head follow your cursor.
-
-One character engine powers both. The graphics, font, and activity snapshot live in this repo. Light and dark themes, reduced motion, and a static fallback are built in. [How it works](./docs/DEVELOPMENT.md) · [character engine](./src/bot-core.mjs).
-
-<div align="center"><sub>built with care. kept in motion.</sub></div>

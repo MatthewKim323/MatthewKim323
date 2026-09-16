@@ -41,7 +41,8 @@ Repository descriptions and READMEs are primary project-author sources, not inde
 
 - Six featured projects balance recent infrastructure and tools (syla, editskill, 1to1, nerve) with existing award-winning work (flow, nami).
 - Ten archive entries preserve every remaining project from the previous profile.
-- Six tool entries preserve all previously linked engineering skills individually.
+- Six tool entries remain in the editorial dataset for reference. They are intentionally omitted from the README and site at Matt's request.
+- Section and project labels have no decorative numbering. The public profile omits the renderer/build explanation; engineering documentation remains in `docs/`.
 - The `now` list is an editorial snapshot of recently published work, not a live activity tracker or promise of ongoing availability.
 - All visible copy uses lower case where practical and avoids em dashes.
 - `jabby.url` is an empty string. Render its name as plain text; never invent a repository URL or produce an empty anchor.

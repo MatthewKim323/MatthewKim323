@@ -42,13 +42,12 @@ export function botGraphic(theme,{animated=true}={}) {
     const times=i===0?`0;${end};1`:i===frames-1?`0;${start};1`:`0;${start};${end};1`;
     motion+=`<g opacity="${i===0?1:0}"><use xlink:href="#p${i}"/><animate attributeName="opacity" values="${values}" keyTimes="${times}" dur="12s" repeatCount="indefinite" calcMode="discrete"/></g>`;
   }
-  const footer=`<path d="M260 458H500" stroke="${c.line}"/>${text(380,484,'MATT / 001',11,c.muted,'text-anchor="middle" letter-spacing="3"')}`;
-  return svg(760,504,'A floating ASCII companion with two rounded eyes. Open the live page for cursor tracking.',`<defs>${defs}</defs>${animated?`<g class="motion">${motion}</g><g class="poster"><use xlink:href="#p0"/></g>`:'<use xlink:href="#p0"/>'}${footer}`);
+  return svg(760,444,'A floating ASCII companion with two rounded eyes. Open the live page for cursor tracking.',`<defs>${defs}</defs>${animated?`<g class="motion">${motion}</g><g class="poster"><use xlink:href="#p0"/></g>`:'<use xlink:href="#p0"/>'}`);
 }
 
-export function headingGraphic(label,number,theme) {
+export function headingGraphic(label,theme) {
   const c=palettes[theme];
-  return svg(760,52,label,`${text(0,30,number,11,c.muted)}${text(38,30,label,16,c.fg)}<path d="M${Math.min(700,60+label.length*10)} 25H760" stroke="${c.line}"/>`);
+  return svg(760,52,label,`${text(0,30,label,16,c.fg)}<path d="M${Math.min(700,22+label.length*10)} 25H760" stroke="${c.line}"/>`);
 }
 
 export function activityGraphic(activity,theme) {

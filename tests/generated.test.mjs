@@ -4,10 +4,12 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { root, readJSON, validateProfile, summarizeActivity } from '../scripts/lib.mjs';
 
-test('every curated project survives README generation, including unlinked work',async()=>{
+test('selected work and archive remain in the README while tool listings stay omitted',async()=>{
   const p=validateProfile(await readJSON('data/profile.json'));
   const readme=await readFile(path.join(root,'README.md'),'utf8');
-  for(const project of p.projects)assert.ok(readme.includes(project.url||project.name),project.id);
+  for(const project of p.projects.filter(project=>project.category!=='tool'))assert.ok(readme.includes(project.url||project.name),project.id);
+  for(const project of p.projects.filter(project=>project.category==='tool'))assert.ok(!readme.includes(project.url),project.id);
+  assert.doesNotMatch(readme,/tools i build with|under the hood|One character engine|drawn from 3D geometry/);
   assert.ok(!readme.includes(']()'));
   assert.equal(p.projects.length,22);
 });
@@ -21,7 +23,7 @@ test('committed calendar is consecutive and reconciles with the display metrics'
 });
 test('SVGs are self-contained, accessible, and support reduced motion',async()=>{
   const names=(await readdir(path.join(root,'assets'))).filter(n=>n.endsWith('.svg'));
-  assert.ok(names.length>=18);
+  assert.equal(names.length,14);
   for(const name of names){
     const body=await readFile(path.join(root,'assets',name),'utf8');
     assert.ok(body.includes('<title id="title">'),name);
@@ -29,6 +31,7 @@ test('SVGs are self-contained, accessible, and support reduced motion',async()=>
     assert.ok(body.includes('data:font/woff2;base64,'),name);
     assert.ok(body.includes('prefers-reduced-motion:reduce'),name);
     assert.ok(Buffer.byteLength(body)<1_000_000,`${name} budget`);
+    if(name.startsWith('heading-')||name.startsWith('bot-'))assert.doesNotMatch(body,/>\s*(?:0\d|MATT\s*\/\s*001)\s*<\/text>/,name);
   }
 });
 test('animation frame intervals cover exactly one visible pose without a seam',async()=>{
