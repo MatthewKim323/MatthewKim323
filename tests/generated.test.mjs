@@ -9,7 +9,8 @@ test('selected work and archive remain in the README while tool listings stay om
   const readme=await readFile(path.join(root,'README.md'),'utf8');
   for(const project of p.projects.filter(project=>project.category!=='tool'))assert.ok(readme.includes(project.url||project.name),project.id);
   for(const project of p.projects.filter(project=>project.category==='tool'))assert.ok(!readme.includes(project.url),project.id);
-  assert.doesNotMatch(readme,/tools i build with|under the hood|One character engine|drawn from 3D geometry/);
+  assert.doesNotMatch(readme,/tools i build with|under the hood|One character engine|drawn from 3D geometry|meet the bot|bot-dark/);
+  assert.ok(readme.includes('assets/ocean-dark.svg'));
   assert.ok(!readme.includes(']()'));
   assert.equal(p.projects.length,22);
 });
@@ -31,16 +32,24 @@ test('SVGs are self-contained, accessible, and support reduced motion',async()=>
     assert.ok(body.includes('data:font/woff2;base64,'),name);
     assert.ok(body.includes('prefers-reduced-motion:reduce'),name);
     assert.ok(Buffer.byteLength(body)<1_000_000,`${name} budget`);
-    if(name.startsWith('heading-')||name.startsWith('bot-'))assert.doesNotMatch(body,/>\s*(?:0\d|MATT\s*\/\s*001)\s*<\/text>/,name);
+    if(name.startsWith('heading-')||name.startsWith('ocean-'))assert.doesNotMatch(body,/>\s*(?:0\d|MATT\s*\/\s*001)\s*<\/text>/,name);
   }
 });
-test('animation frame intervals cover exactly one visible pose without a seam',async()=>{
-  const body=await readFile(path.join(root,'assets/bot-dark.svg'),'utf8');
-  const frames=[...body.matchAll(/values="([01;]+)" keyTimes="([\d.;]+)" dur="12s"/g)].map(m=>({values:m[1].split(';').map(Number),times:m[2].split(';').map(Number)}));
-  assert.equal(frames.length,96);
-  for(let i=0;i<2000;i++){
-    const t=i/2000;
-    const visible=frames.reduce((sum,f)=>{let index=f.times.findLastIndex(time=>time<=t);return sum+f.values[index];},0);
-    assert.equal(visible,1,`time=${t}`);
+test('ocean brightness curves close the loop and the reduced-motion poster matches the still asset',async()=>{
+  for(const theme of ['dark','light']){
+    const body=await readFile(path.join(root,`assets/ocean-${theme}.svg`),'utf8');
+    const curves=[...body.matchAll(/<animate attributeName="opacity" values="([\d.;]+)" dur="18s" repeatCount="indefinite" calcMode="linear"/g)].map(m=>m[1].split(';').map(Number));
+    assert.ok(curves.length>500 && curves.length<2000);
+    for(const curve of curves){
+      assert.equal(curve.length,25);
+      assert.equal(curve[0],curve.at(-1));
+      assert.ok(curve.every(value=>Number.isFinite(value)&&value>=0&&value<=1));
+      assert.ok(curve.some(value=>value!==curve[0]));
+    }
+    const still=await readFile(path.join(root,`assets/ocean-still-${theme}.svg`),'utf8');
+    const poster=body.match(/<g class="poster">([\s\S]*)<\/g><\/svg>/)[1];
+    assert.equal(poster,still.match(/<\/style>([\s\S]*)<\/svg>/)[1]);
+    assert.doesNotMatch(still,/<animate/);
+    assert.match(body,/width="760" height="380"/);
   }
 });

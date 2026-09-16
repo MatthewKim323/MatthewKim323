@@ -1,10 +1,10 @@
 <!-- Generated from data/profile.json by npm run generate. See docs/DEVELOPMENT.md. -->
 <div align="center">
 
-<a href="https://matthewkim323.github.io/MatthewKim323/" aria-label="Meet matt's interactive ASCII bot">
+<a href="https://matthewkim323.github.io/MatthewKim323/" aria-label="Visit matt's moonlit ocean">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/bot-dark.svg">
-  <img src="./assets/bot-light.svg" width="620" alt="A floating ASCII companion. Click to meet the cursor-tracking version.">
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/ocean-dark.svg">
+  <img src="./assets/ocean-light.svg" width="760" alt="Moonlight over a quiet ocean, drawn in animated ASCII characters.">
 </picture>
 </a>
 
@@ -12,7 +12,7 @@
 
 <samp>for the love of the game.</samp>
 
-[github](https://github.com/MatthewKim323) &nbsp; / &nbsp; [email](mailto:founders@kalilabs.ai) &nbsp; / &nbsp; [meet the bot ↗](https://matthewkim323.github.io/MatthewKim323/)
+[github](https://github.com/MatthewKim323) &nbsp; / &nbsp; [email](mailto:founders@kalilabs.ai) &nbsp; / &nbsp; [website ↗](https://matthewkim323.github.io/MatthewKim323/)
 
 </div>
 

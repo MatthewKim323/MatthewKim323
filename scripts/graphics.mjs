@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { root, escapeXML as esc } from './lib.mjs';
-import { renderAscii, idlePose } from '../src/bot-core.mjs';
+import { renderOcean, LOOP_SECONDS, COLS, ROWS } from '../src/ocean-core.mjs';
 
 export const palettes = {
   dark:{bg:'#0d1117',fg:'#e2ded5',bright:'#fffaf2',muted:'#a39f97',line:'#30363d',accent:'#ffb577',faint:'#394552'},
@@ -12,37 +12,37 @@ const style = `<style>@font-face{font-family:JB;src:url(data:font/woff2;base64,$
 const svg = (w,h,title,content) => `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-labelledby="title"><title id="title">${esc(title)}</title>${style}${content}</svg>\n`;
 const text = (x,y,value,size,fill,extra='') => `<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" ${extra}>${esc(value)}</text>`;
 
-function poseSVG(pose,c) {
-  const cols=96,rows=48,grid=renderAscii({cols,rows,...pose});
-  const cw=4.4,ch=8.8,ox=(760-cols*cw)/2,oy=20;
-  let out='';
-  grid.lines.forEach((line,row)=>{
-    const first=line.search(/\S/),last=line.search(/\s*$/);
-    if(first<0)return;
-    const value=line.slice(first,last);
-    out+=text((ox+first*cw).toFixed(2),(oy+row*ch).toFixed(2),value,9.8,c.fg,`xml:space="preserve" textLength="${(value.length*cw).toFixed(2)}" lengthAdjust="spacingAndGlyphs"`);
-    for(let col=first;col<last;col++) {
-      if(grid.tones[row*cols+col]!==4)continue;
-      const start=col;while(col+1<last&&grid.tones[row*cols+col+1]===4)col++;
-      const accent=line.slice(start,col+1);
-      out+=text((ox+start*cw).toFixed(2),(oy+row*ch).toFixed(2),accent,9.8,c.accent,`xml:space="preserve" textLength="${(accent.length*cw).toFixed(2)}" lengthAdjust="spacingAndGlyphs"`);
+// Neighboring glyphs share a sampled opacity curve. This keeps the SVG compact
+// without embedding hundreds of full frames or running scripts inside GitHub.
+export function oceanGraphic(theme,{animated=true}={}) {
+  const c=palettes[theme],sampleCount=24;
+  const frames=Array.from({length:sampleCount},(_,i)=>renderOcean({time:i*LOOP_SECONDS/sampleCount}));
+  const alpha=tone=>tone?((tone-1)%8+1)/8:0;
+  const cw=760/COLS,ch=380/ROWS,fontSize=Number((ch*.88).toFixed(3));
+  const fills=theme==='dark'?['#dae0db','#f2c289']:[c.fg,c.accent];
+  let poster='',motion='';
+  for(let row=0;row<ROWS;row++)for(let start=0;start<COLS;start+=3){
+    // Split warm/cool boundaries rather than bleeding moonlight into the sky.
+    const end=Math.min(start+3,COLS);
+    for(const warm of [false,true]){
+      const cells=[];
+      for(let col=start;col<end;col++){
+        const i=row*COLS+col;
+        const reference=frames.find(frame=>frame.tones[i])?.tones[i]||0;
+        if(reference&&((reference>8)===warm))cells.push(col);
+      }
+      if(!cells.length)continue;
+      const values=frames.map(frame=>Number((cells.reduce((sum,col)=>sum+alpha(frame.tones[row*COLS+col]),0)/cells.length).toFixed(3)));
+      values.push(values[0]);
+      const x=cells.map(col=>((col+.5)*cw).toFixed(2)).join(' ');
+      const glyphs=cells.map(col=>frames.find(frame=>frame.lines[row][col]!==' ').lines[row][col]).join('');
+      const attrs=`x="${x}" y="${((row+.5)*ch).toFixed(2)}" fill="${fills[Number(warm)]}" opacity="${values[0]}" text-anchor="middle" dominant-baseline="central" font-size="${fontSize}"`;
+      poster+=`<text ${attrs}>${esc(glyphs)}</text>`;
+      const animation=values.some(value=>value!==values[0])?`<animate attributeName="opacity" values="${values.join(';')}" dur="${LOOP_SECONDS}s" repeatCount="indefinite" calcMode="linear"/>`:'';
+      motion+=`<text ${attrs}>${esc(glyphs)}${animation}</text>`;
     }
-  });
-  return out;
-}
-
-export function botGraphic(theme,{animated=true}={}) {
-  const c=palettes[theme],frames=animated?96:1;
-  let defs='',motion='';
-  for(let i=0;i<frames;i++) {
-    defs+=`<g id="p${i}">${poseSVG(idlePose(i*12/frames),c)}</g>`;
-    if(!animated)continue;
-    const start=(i/frames).toFixed(6),end=((i+1)/frames).toFixed(6);
-    const values=i===0?'1;0;0':i===frames-1?'0;1;1':'0;1;0;0';
-    const times=i===0?`0;${end};1`:i===frames-1?`0;${start};1`:`0;${start};${end};1`;
-    motion+=`<g opacity="${i===0?1:0}"><use xlink:href="#p${i}"/><animate attributeName="opacity" values="${values}" keyTimes="${times}" dur="12s" repeatCount="indefinite" calcMode="discrete"/></g>`;
   }
-  return svg(760,444,'A floating ASCII companion with two rounded eyes. Open the live page for cursor tracking.',`<defs>${defs}</defs>${animated?`<g class="motion">${motion}</g><g class="poster"><use xlink:href="#p0"/></g>`:'<use xlink:href="#p0"/>'}`);
+  return svg(760,380,'Moonlight over a quiet ocean, drawn in ASCII characters.',animated?`<g class="motion">${motion}</g><g class="poster">${poster}</g>`:poster);
 }
 
 export function headingGraphic(label,theme) {

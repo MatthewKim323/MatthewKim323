@@ -1,5 +1,5 @@
 import { readJSON, validateProfile, validateActivity, writeChanged, escapeMarkdown as md, escapeXML as html } from './lib.mjs';
-import { botGraphic, headingGraphic, activityGraphic, languageGraphic } from './graphics.mjs';
+import { oceanGraphic, headingGraphic, activityGraphic, languageGraphic } from './graphics.mjs';
 
 const profile=validateProfile(await readJSON('data/profile.json'));
 const activity=validateActivity(await readJSON('data/activity.json'));
@@ -13,15 +13,15 @@ const archive=profile.projects.filter(p=>!p.featured&&p.category!=='tool');
 const readme=`<!-- Generated from data/profile.json by npm run generate. See docs/DEVELOPMENT.md. -->
 <div align="center">
 
-<a href="${site}" aria-label="Meet matt's interactive ASCII bot">
-${picture('bot','A floating ASCII companion. Click to meet the cursor-tracking version.',620)}
+<a href="${site}" aria-label="Visit matt's moonlit ocean">
+${picture('ocean','Moonlight over a quiet ocean, drawn in animated ASCII characters.',760)}
 </a>
 
 # ${md(profile.name)}
 
 <samp>${html(profile.tagline)}</samp>
 
-${profile.links.map(l=>`[${md(l.label)}](${l.url})`).join(' &nbsp; / &nbsp; ')} &nbsp; / &nbsp; [meet the bot ↗](${site})
+${profile.links.map(l=>`[${md(l.label)}](${l.url})`).join(' &nbsp; / &nbsp; ')} &nbsp; / &nbsp; [website ↗](${site})
 
 </div>
 
@@ -57,8 +57,8 @@ ${picture('languages','Language bytes across owned public non-fork repositories.
 
 let changed=0;
 for(const theme of ['dark','light']) {
-  changed+=await writeChanged(`assets/bot-${theme}.svg`,botGraphic(theme));
-  changed+=await writeChanged(`assets/bot-still-${theme}.svg`,botGraphic(theme,{animated:false}));
+  changed+=await writeChanged(`assets/ocean-${theme}.svg`,oceanGraphic(theme));
+  changed+=await writeChanged(`assets/ocean-still-${theme}.svg`,oceanGraphic(theme,{animated:false}));
   for(const [key,label] of [['about','about'],['work','selected work'],['activity','the build log']]) changed+=await writeChanged(`assets/heading-${key}-${theme}.svg`,headingGraphic(label,theme));
   changed+=await writeChanged(`assets/activity-${theme}.svg`,activityGraphic(activity,theme));
   changed+=await writeChanged(`assets/languages-${theme}.svg`,languageGraphic(activity,theme));
