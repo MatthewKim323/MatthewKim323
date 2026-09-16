@@ -21,12 +21,12 @@
   <img src="./assets/heading-about-light.svg" width="760" alt="about">
 </picture>
 
-> full\-stack and agentic engineer building persistent agents and real\-time systems\.<br>
+> full\-stack and agentic engineer\.<br>
 > 13 hackathon wins in 6 months.
 
 i started with a python text adventure in middle school\. that curiosity grew into state\-level robotics, hackathons, and a habit of learning whatever a problem needs to get it shipped\.
 
-building kali labs\. san francisco / ucsb, studying stats &amp; data science and economics\. i like turning frontier models into products that are fast, reliable, and actually useful\.
+san francisco / ucsb, studying stats &amp; data science and economics\. i like turning frontier models into products that are fast, reliable, and actually useful\.
 
 <samp>persistent context &nbsp; / &nbsp; embodied agents &nbsp; / &nbsp; real-time voice &nbsp; / &nbsp; computer use</samp>
 

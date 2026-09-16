@@ -2,8 +2,8 @@
   "name": "matt kim",
   "handle": "MatthewKim323",
   "tagline": "building things people would actually use.",
-  "headline": "full-stack and agentic engineer building persistent agents and real-time systems.",
-  "bio": ["i started with a python text adventure in middle school. that curiosity grew into state-level robotics, hackathons, and a habit of learning whatever a problem needs to get it shipped.", "building kali labs. san francisco / ucsb, studying stats & data science and economics. i like turning frontier models into products that are fast, reliable, and actually useful."],
+  "headline": "full-stack and agentic engineer.",
+  "bio": ["i started with a python text adventure in middle school. that curiosity grew into state-level robotics, hackathons, and a habit of learning whatever a problem needs to get it shipped.", "san francisco / ucsb, studying stats & data science and economics. i like turning frontier models into products that are fast, reliable, and actually useful."],
   "email": "matthewykim23@gmail.com",
   "links": [
     { "label": "portfolio", "url": "https://mykm.dev" },
@@ -252,5 +252,5 @@
       "featured": false
     }
   ],
-  "now": ["persistent memory and background agents that keep working between conversations.", "full-duplex voice: listening, reasoning, speaking, and acting at the same time.", "multimodal perception and computer use.", "one brain, many bodies: jabby in discord, agartha in minecraft."]
+  "now": []
 }

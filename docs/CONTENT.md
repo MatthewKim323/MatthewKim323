@@ -4,7 +4,7 @@
 
 ## Primary portfolio source
 
-At Matt's request, identity, current focus, contact details, and case-study content were reconciled against his portfolio in `~/dev/newmatt` on 2026-09-16:
+At Matt's request, identity, interests, contact details, and case-study content were reconciled against his portfolio in `~/dev/newmatt` on 2026-09-16:
 
 - `src/data/portfolio.ts`: biography, tagline, education, location, interests, email, social links, and resume.
 - `src/data/case-studies.ts`: project descriptions, technologies, award labels, and preferred project ordering.
@@ -14,7 +14,7 @@ The local working copy was read without changing it. It contains newer event lab
 
 The headline `13 hackathon wins in 6 months` comes from the portfolio and is self-reported. It is not recalculated from project entries. Nine winning projects can have multiple awards. The portfolio's separate `13 shipped systems` statistic is stale against its fourteen case studies, so it is not reproduced.
 
-The personal contact is `matthewykim23@gmail.com`, as explicitly published in the portfolio. LinkedIn, X, Devpost, GitHub, and the resume use its canonical links. The source also lists `founders@kalilabs.ai` as a company contact; the public profile uses one primary email. Location and education copy follows `SAN FRANCISCO / UCSB` and `UCSB · STATS & DATA SCIENCE · ECON`. No graduation, completed degree, or employer affiliation beyond the stated Kali Labs work is inferred.
+The personal contact is `matthewykim23@gmail.com`, as explicitly published in the portfolio. LinkedIn, X, Devpost, GitHub, and the resume use its canonical links. The public profile uses one primary email. Location and education copy follows `SAN FRANCISCO / UCSB` and `UCSB · STATS & DATA SCIENCE · ECON`. No graduation, completed degree, or employer affiliation is inferred.
 
 ## Selected work
 
@@ -64,7 +64,7 @@ Author-written portfolios and READMEs are primary project sources, not independe
 
 - Ten selected entries and nine archive entries are public. The six tool entries stay hidden.
 - The portfolio is the primary reference for biography, contacts, case studies, and awards. Supplemental public work belongs in the archive unless Matt selects it.
-- The `now` list condenses the portfolio's current interests. It is an editorial snapshot, not a live tracker or availability promise.
+- Matt requested on 2026-09-16 that the profile not disclose what he is currently building. Keep the `now` list empty so the site omits that section. Biography and headline describe background and expertise only. Do not import current ventures or active-project updates from the portfolio; the selected work and archive describe existing projects.
 - Section and project labels have no decorative numbering. The tools section and public build explanation remain removed.
 - Public copy uses lower case where practical and avoids em dashes.
 - A project without a verified public destination can have an empty URL. Render its name as text without an empty anchor.
