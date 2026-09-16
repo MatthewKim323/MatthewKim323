@@ -4,9 +4,9 @@ import AxeBuilder from '@axe-core/playwright';
 
 const profile = JSON.parse(await readFile(new URL('../../data/profile.json', import.meta.url), 'utf8'));
 const canvasSelector = '#bot-canvas';
-const featuredCount = profile.projects.filter(project => project.featured || project.category === 'featured').length;
+const portfolioProjects = profile.projects.filter(project => project.category !== 'tool');
+const featuredCount = portfolioProjects.filter(project => project.featured || project.category === 'featured').length;
 const archiveCount = profile.projects.filter(project => !project.featured && project.category === 'archive').length;
-const toolCount = profile.projects.filter(project => !project.featured && project.category === 'tool').length;
 const frameCount = page => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.frames));
 const framePixels = page => page.locator(canvasSelector).evaluate(canvas => canvas.toDataURL());
 
@@ -25,18 +25,18 @@ async function openProfile(page) {
   await settleFontsAndLayout(page);
 }
 
-test('every source project loads with correct content and links, and the archive expands', async ({ page }) => {
+test('every portfolio project loads with correct content and links, and the archive expands', async ({ page }) => {
   await openProfile(page);
-  await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+  await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
   await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
   await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
-  await expect(page.locator('#tools-list article')).toHaveCount(toolCount);
+  await expect(page.locator('#workbench, #tools-list, .project-index, #work-count, #archive-count')).toHaveCount(0);
   await expect(page.locator('#archive-projects')).toBeHidden();
   await page.locator('#archive summary').click();
   await expect(page.locator('#archive')).toHaveAttribute('open', '');
   await expect(page.locator('#archive-projects')).toBeVisible();
 
-  for (const project of profile.projects) {
+  for (const project of portfolioProjects) {
     const row = page.locator(`article[data-project="${project.id}"]`);
     await expect(row.locator('h3')).toContainText(project.name);
     await expect(row.locator('p').first()).toHaveText(project.description);
@@ -64,7 +64,7 @@ test('the complete portfolio remains within a 320px viewport in both themes', as
     }));
     expect(overflow.document).toBeLessThanOrEqual(overflow.viewport + 1);
     expect(overflow.body).toBeLessThanOrEqual(overflow.viewport + 1);
-    await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+    await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
     await expect(page.locator('#archive-projects')).toBeVisible();
   }
 });
@@ -231,7 +231,7 @@ test('an unavailable renderer keeps the complete portfolio and static companion 
   await page.route('**/src/bot-core.mjs', route => route.fulfill({ status: 503, contentType: 'text/javascript', body: '' }));
   await page.goto('./');
   await expect(page.locator('html')).toHaveAttribute('data-profile-loaded', 'true');
-  await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+  await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
   await expect(page.locator('#bot-fallback')).toBeVisible();
   await expect(page.locator(canvasSelector)).toBeHidden();
   await expect(page.locator('#motion-toggle')).toBeHidden();
@@ -240,11 +240,11 @@ test('an unavailable renderer keeps the complete portfolio and static companion 
 
 test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
-  test('every project, native archive disclosure and the static companion remain available', async ({ page }) => {
+  test('every portfolio project, native archive disclosure and the static companion remain available', async ({ page }) => {
     await page.goto('./');
-    await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+    await expect(page.locator('article[data-project]')).toHaveCount(portfolioProjects.length);
     await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
-    await expect(page.locator('#tools-list article')).toHaveCount(toolCount);
+    await expect(page.locator('#workbench, #tools-list, .project-index, #work-count, #archive-count')).toHaveCount(0);
     await expect(page.locator('#bot-fallback')).toBeVisible();
     await expect(page.locator(canvasSelector)).toBeHidden();
     await expect(page.locator('#motion-toggle')).toBeHidden();
@@ -253,7 +253,7 @@ test.describe('without JavaScript', () => {
     await page.locator('#archive summary').click();
     await expect(page.locator('#archive-projects')).toBeVisible();
     await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
-    for (const project of profile.projects) {
+    for (const project of portfolioProjects) {
       const row = page.locator(`article[data-project="${project.id}"]`);
       await expect(row.locator('h3')).toContainText(project.name);
       await expect(row.locator('p').first()).toHaveText(project.description);

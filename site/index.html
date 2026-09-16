@@ -43,10 +43,10 @@
             <div class="hero-links"><a href="#work" class="text-link">explore the work <span aria-hidden="true">↓</span></a><span class="award-mark" id="awards-label">{{AWARDS}}</span></div>
           </div>
           <figure class="bot-figure" aria-labelledby="bot-caption">
-            <div class="bot-topline"><span>ascii companion / 001</span><span class="bot-state"><span class="state-dot" aria-hidden="true"></span><span id="bot-state">standby</span></span></div>
+            <div class="bot-topline"><span>ascii companion</span><span class="bot-state"><span class="state-dot" aria-hidden="true"></span><span id="bot-state">standby</span></span></div>
             <div class="bot-stage" id="bot-stage">
               <canvas id="bot-canvas" role="img" aria-label="An original floating companion rendered entirely from ASCII characters. Its face and eyes follow your pointer." hidden></canvas>
-              <picture class="bot-fallback" id="bot-fallback"><source srcset="./assets/bot-still-dark.svg" media="(prefers-color-scheme: dark)"><img src="./assets/bot-still-light.svg" width="768" height="800" alt="An original floating character with two friendly pill-shaped eyes, drawn entirely from ASCII characters."></picture>
+              <picture class="bot-fallback" id="bot-fallback"><source srcset="./assets/bot-still-dark.svg" media="(prefers-color-scheme: dark)"><img src="./assets/bot-still-light.svg" width="760" height="444" alt="An original floating character with two friendly pill-shaped eyes, drawn entirely from ASCII characters."></picture>
             </div>
             <figcaption id="bot-caption">
               <span id="bot-instruction">a little curiosity, in characters.</span>
@@ -57,26 +57,23 @@
         </section>
 
         <section class="about-strip" aria-label="About Matt">
-          <p class="section-code">01 / the intent</p>
+          <p class="section-code">the intent</p>
           <div class="about-copy" id="bio">{{BIO}}</div>
           <ul class="focus-list" id="focus-list">{{FOCUS}}</ul>
         </section>
 
         <section class="work-section" id="work" aria-labelledby="work-title">
-          <div class="section-heading"><div><p class="section-code">02 / selected work</p><h2 id="work-title">built. shipped. still building.</h2></div><span class="section-note" id="work-count">{{WORK_COUNT}}</span></div>
+          <div class="section-heading"><div><p class="section-code">selected work</p><h2 id="work-title">built. shipped. still building.</h2></div></div>
           <div class="project-list" id="featured-projects">{{FEATURED_PROJECTS}}</div>
-          <noscript><p class="content-status">the companion follows your cursor when JavaScript is enabled. everything else is right here.</p></noscript>
           {{ARCHIVE_SECTION}}
         </section>
 
-        {{TOOLS_SECTION}}
-
         {{NOW_SECTION}}
 
-        <section class="contact-section" aria-labelledby="contact-title"><p class="section-code">04 / say something</p><div class="contact-row"><h2 id="contact-title">got something<br>worth building?</h2><div class="contact-links" id="contact-links">{{CONTACTS}}</div></div></section>
+        <section class="contact-section" aria-labelledby="contact-title"><p class="section-code">say something</p><div class="contact-row"><h2 id="contact-title">got something<br>worth building?</h2><div class="contact-links" id="contact-links">{{CONTACTS}}</div></div></section>
       </main>
 
-      <footer class="site-footer"><span>{{NAME}} / <span id="footer-year">2026</span></span><span class="footer-middle">made of characters. built with intent.</span><a class="quiet-link" href="https://github.com/MatthewKim323/MatthewKim323">view source <span aria-hidden="true">↗</span></a></footer>
+      <footer class="site-footer"><span>{{NAME}} / <span id="footer-year">2026</span></span><a class="quiet-link" href="https://github.com/MatthewKim323/MatthewKim323">view source <span aria-hidden="true">↗</span></a></footer>
     </div>
   </body>
 </html>

@@ -200,7 +200,7 @@ svg {
   position:relative;
   padding-bottom:7px;
 }
-.eyebrow,.section-code,.section-note,.bot-topline {
+.eyebrow,.section-code,.bot-topline {
   font-size:10px;
   letter-spacing:.45px;
   color:var(--subtle);
@@ -440,7 +440,7 @@ h1 {
   padding-right:9px;
   color:var(--accent);
 }
-.work-section,.workbench-section {
+.work-section {
   padding-top:79px;
 }
 .section-heading {
@@ -457,14 +457,9 @@ h2 {
   font-weight:400;
   margin:12px 0 0;
 }
-.section-note {
-  font-size:9px;
-  white-space:nowrap;
-  padding-bottom:3px;
-}
 .project-row {
   display:grid;
-  grid-template-columns:40px 240px minmax(0,1fr);
+  grid-template-columns:240px minmax(0,1fr);
   gap:24px;
   border-top:1px solid var(--line);
   padding:28px 0 29px;
@@ -472,11 +467,6 @@ h2 {
 }
 .project-row:last-child {
   border-bottom:1px solid var(--line);
-}
-.project-index {
-  color:var(--subtle);
-  font-size:10px;
-  line-height:27px;
 }
 .project-heading h3 {
   font-size:19px;
@@ -542,11 +532,6 @@ h2 {
 .archive summary::-webkit-details-marker {
   display:none;
 }
-.archive summary #archive-count {
-  color:var(--subtle);
-  font-size:10px;
-  margin-left:10px;
-}
 .archive-toggle {
   color:var(--accent);
   font-size:20px;
@@ -564,7 +549,7 @@ h2 {
   padding-top:9px;
 }
 .archive-projects .project-row {
-  grid-template-columns:40px 240px minmax(0,1fr);
+  grid-template-columns:240px minmax(0,1fr);
   padding:24px 0;
 }
 .archive-projects .project-heading h3 {
@@ -572,49 +557,6 @@ h2 {
 }
 .archive-projects .project-details p {
   font-size:11px;
-}
-.content-status {
-  margin:18px 0;
-  font-size:11px;
-  color:var(--muted);
-}
-.content-status a {
-  color:var(--accent);
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-.tools-list {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--line);
-}
-.tool-row {
-  padding:23px 25px 23px 0;
-  border-bottom:1px solid var(--line);
-  min-width:0;
-}
-.tool-row:nth-child(even) {
-  padding-left:28px;
-  padding-right:0;
-  border-left:1px solid var(--line);
-}
-.tool-row h3 {
-  font-size:13px;
-  font-weight:400;
-  margin:0 0 7px;
-  letter-spacing:-.3px;
-}
-.tool-row h3 span {
-  color:var(--subtle);
-  margin-left:7px;
-  font-size:11px;
-}
-.tool-row p {
-  font-size:11px;
-  line-height:1.8;
-  color:var(--muted);
-  margin:0;
-  max-width:410px;
 }
 .now-section {
   display:grid;
@@ -675,17 +617,14 @@ h2 {
 .site-footer a {
   font-size:9px;
 }
-.footer-middle {
-  font-size:9px;
-}
 @media(hover:hover) and (pointer:fine) {
   .quiet-link:hover,.wordmark:hover,.motion-button:hover,.archive summary:hover {
     color:var(--ink);
   }
-  .project-heading h3 a:hover,.tool-row a:hover {
+  .project-heading h3 a:hover {
     color:var(--accent);
   }
-  .project-heading h3 a:hover>span,.tool-row a:hover span {
+  .project-heading h3 a:hover>span {
     color:var(--accent);
   }
   .text-link:hover {
@@ -755,7 +694,7 @@ h2 {
     gap:4px 17px;
   }
   .project-row,.archive-projects .project-row {
-    grid-template-columns:28px 190px minmax(0,1fr);
+    grid-template-columns:190px minmax(0,1fr);
     gap:18px;
   }
   .bot-topline {
@@ -763,9 +702,6 @@ h2 {
   }
   .bot-figure figcaption {
     font-size:8px;
-  }
-  .footer-middle {
-    display:none;
   }
 }
 @media(max-width:720px) {
@@ -862,7 +798,7 @@ h2 {
     grid-column:auto;
     margin-top:3px;
   }
-  .work-section,.workbench-section {
+  .work-section {
     padding-top:55px;
   }
   .section-heading {
@@ -876,11 +812,8 @@ h2 {
     font-size:17px;
     letter-spacing:-.7px;
   }
-  .section-note {
-    font-size:8px;
-  }
   .project-row,.archive-projects .project-row {
-    grid-template-columns:25px 1fr;
+    grid-template-columns:1fr;
     gap:5px 14px;
     padding:24px 0;
   }
@@ -900,7 +833,7 @@ h2 {
     max-width:140px;
   }
   .project-details {
-    grid-column:2;
+    grid-column:auto;
   }
   .project-details p {
     font-size:11px;
@@ -915,27 +848,13 @@ h2 {
     margin-right:10px;
   }
   .archive-projects .project-row {
-    grid-template-columns:25px 1fr;
+    grid-template-columns:1fr;
   }
   .archive-projects .project-heading h3 {
     font-size:16px;
   }
   .archive summary {
     font-size:10px;
-  }
-  .archive summary #archive-count {
-    font-size:9px;
-    margin-left:5px;
-  }
-  .tools-list {
-    grid-template-columns:1fr;
-  }
-  .tool-row,.tool-row:nth-child(even) {
-    padding:21px 0;
-    border-left:0;
-  }
-  .tool-row p {
-    max-width:none;
   }
   .now-section {
     grid-template-columns:1fr;
@@ -1015,7 +934,7 @@ h2 {
     font-size:15px;
   }
   .project-row,.archive-projects .project-row {
-    grid-template-columns:19px 1fr;
+    grid-template-columns:1fr;
     gap:6px 9px;
   }
   .project-heading {
