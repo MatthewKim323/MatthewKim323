@@ -4,6 +4,9 @@ import AxeBuilder from '@axe-core/playwright';
 
 const profile = JSON.parse(await readFile(new URL('../../data/profile.json', import.meta.url), 'utf8'));
 const canvasSelector = '#bot-canvas';
+const featuredCount = profile.projects.filter(project => project.featured || project.category === 'featured').length;
+const archiveCount = profile.projects.filter(project => !project.featured && project.category === 'archive').length;
+const toolCount = profile.projects.filter(project => !project.featured && project.category === 'tool').length;
 const frameCount = page => page.locator(canvasSelector).evaluate(canvas => Number(canvas.dataset.frames));
 const framePixels = page => page.locator(canvasSelector).evaluate(canvas => canvas.toDataURL());
 
@@ -22,13 +25,12 @@ async function openProfile(page) {
   await settleFontsAndLayout(page);
 }
 
-test('all 22 projects load with their correct content and links, and the archive expands', async ({ page }) => {
+test('every source project loads with correct content and links, and the archive expands', async ({ page }) => {
   await openProfile(page);
-  expect(profile.projects).toHaveLength(22);
-  await expect(page.locator('article[data-project]')).toHaveCount(22);
-  await expect(page.locator('#featured-projects article')).toHaveCount(6);
-  await expect(page.locator('#archive-projects article')).toHaveCount(10);
-  await expect(page.locator('#tools-list article')).toHaveCount(6);
+  await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+  await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
+  await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
+  await expect(page.locator('#tools-list article')).toHaveCount(toolCount);
   await expect(page.locator('#archive-projects')).toBeHidden();
   await page.locator('#archive summary').click();
   await expect(page.locator('#archive')).toHaveAttribute('open', '');
@@ -45,6 +47,26 @@ test('all 22 projects load with their correct content and links, and the archive
   expect(width.page).toBeLessThanOrEqual(width.viewport + 1);
   await page.locator('#archive summary').click();
   await expect(page.locator('#archive-projects')).toBeHidden();
+});
+
+test('the complete portfolio remains within a 320px viewport in both themes', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 740 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await openProfile(page);
+  await page.locator('#archive summary').click();
+  for (const theme of ['light', 'dark']) {
+    await page.getByRole('button', { name: `Use ${theme} theme` }).click();
+    await settleFontsAndLayout(page);
+    const overflow = await page.evaluate(() => ({
+      viewport: innerWidth,
+      document: document.documentElement.scrollWidth,
+      body: document.body.scrollWidth,
+    }));
+    expect(overflow.document).toBeLessThanOrEqual(overflow.viewport + 1);
+    expect(overflow.body).toBeLessThanOrEqual(overflow.viewport + 1);
+    await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+    await expect(page.locator('#archive-projects')).toBeVisible();
+  }
 });
 
 test('pause freezes both animation work and canvas pixels; play resumes and preference persists', async ({ page }) => {
@@ -127,12 +149,14 @@ test('reduced motion starts still, ignores passive pointer input, and supports i
   await right.focus();
   await right.press('Enter');
   await expect(page.locator(canvasSelector)).toHaveAttribute('data-yaw', '0.550');
+  await expect(page.locator(canvasSelector)).toHaveAttribute('data-roll', '0.070');
   expect(await framePixels(page)).not.toBe(stillPixels);
   const posedCount = await frameCount(page);
   await page.waitForTimeout(250);
   expect(await frameCount(page)).toBe(posedCount);
   await page.getByRole('button', { name: 'Return the companion to idle' }).press('Enter');
   await expect(page.locator(canvasSelector)).toHaveAttribute('data-yaw', '0.000');
+  await expect(page.locator(canvasSelector)).toHaveAttribute('data-roll', '0.000');
   await page.getByRole('button', { name: 'Play companion animation' }).click();
   await expect.poll(() => frameCount(page)).toBeGreaterThan(posedCount + 2);
 });
@@ -189,7 +213,7 @@ test('an unavailable renderer keeps the complete portfolio and static companion 
   await page.route('**/src/bot-core.mjs', route => route.fulfill({ status: 503, contentType: 'text/javascript', body: '' }));
   await page.goto('./');
   await expect(page.locator('html')).toHaveAttribute('data-profile-loaded', 'true');
-  await expect(page.locator('article[data-project]')).toHaveCount(22);
+  await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
   await expect(page.locator('#bot-fallback')).toBeVisible();
   await expect(page.locator(canvasSelector)).toBeHidden();
   await expect(page.locator('#motion-toggle')).toBeHidden();
@@ -198,11 +222,11 @@ test('an unavailable renderer keeps the complete portfolio and static companion 
 
 test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
-  test('all 22 projects, native archive disclosure and the static companion remain available', async ({ page }) => {
+  test('every project, native archive disclosure and the static companion remain available', async ({ page }) => {
     await page.goto('./');
-    await expect(page.locator('article[data-project]')).toHaveCount(22);
-    await expect(page.locator('#featured-projects article')).toHaveCount(6);
-    await expect(page.locator('#tools-list article')).toHaveCount(6);
+    await expect(page.locator('article[data-project]')).toHaveCount(profile.projects.length);
+    await expect(page.locator('#featured-projects article')).toHaveCount(featuredCount);
+    await expect(page.locator('#tools-list article')).toHaveCount(toolCount);
     await expect(page.locator('#bot-fallback')).toBeVisible();
     await expect(page.locator(canvasSelector)).toBeHidden();
     await expect(page.locator('#motion-toggle')).toBeHidden();
@@ -210,7 +234,7 @@ test.describe('without JavaScript', () => {
     await expect(page.locator('#archive-projects')).toBeHidden();
     await page.locator('#archive summary').click();
     await expect(page.locator('#archive-projects')).toBeVisible();
-    await expect(page.locator('#archive-projects article')).toHaveCount(10);
+    await expect(page.locator('#archive-projects article')).toHaveCount(archiveCount);
     for (const project of profile.projects) {
       const row = page.locator(`article[data-project="${project.id}"]`);
       await expect(row.locator('h3')).toContainText(project.name);

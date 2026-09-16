@@ -84,6 +84,7 @@ async function startBot() {
   const state = {
     yaw: { value: 0, velocity: 0 },
     pitch: { value: 0, velocity: 0 },
+    roll: { value: 0, velocity: 0 },
     gazeX: { value: 0, velocity: 0 },
     gazeY: { value: 0, velocity: 0 },
   };
@@ -132,7 +133,7 @@ async function startBot() {
   }
 
   function poseAtRest() {
-    return { yaw: state.yaw.value, pitch: state.pitch.value, gazeX: state.gazeX.value, gazeY: state.gazeY.value, blink: 0, time: elapsed };
+    return { yaw: state.yaw.value, pitch: state.pitch.value, roll: clamp(state.roll.value, -.12, .12), gazeX: state.gazeX.value, gazeY: state.gazeY.value, blink: 0, time: elapsed };
   }
 
   function paint(pose) {
@@ -159,6 +160,7 @@ async function startBot() {
     canvas.dataset.frames = String(renderCount);
     canvas.dataset.yaw = Number(pose.yaw ?? 0).toFixed(3);
     canvas.dataset.pitch = Number(pose.pitch ?? 0).toFixed(3);
+    canvas.dataset.roll = Number(pose.roll ?? 0).toFixed(3);
     const cost = performance.now() - begin;
     // Prefer a stable cadence to keeping a slow device busy chasing 60fps.
     if (cost > 20) targetInterval = 1000 / 24;
@@ -195,9 +197,9 @@ async function startBot() {
     }
     const idle = idlePose(elapsed);
     const targets = tracking
-      ? { yaw: pointerX * .55, pitch: pointerY * .32, gazeX: pointerX, gazeY: -pointerY }
-      : { yaw: idle.yaw ?? 0, pitch: idle.pitch ?? 0, gazeX: idle.gazeX ?? 0, gazeY: idle.gazeY ?? 0 };
-    for (const key of ['yaw', 'pitch', 'gazeX', 'gazeY']) {
+      ? { yaw: pointerX * .55, pitch: pointerY * .32, roll: pointerX * .07, gazeX: pointerX, gazeY: -pointerY }
+      : { yaw: idle.yaw ?? 0, pitch: idle.pitch ?? 0, roll: clamp(idle.roll ?? 0, -.12, .12), gazeX: idle.gazeX ?? 0, gazeY: idle.gazeY ?? 0 };
+    for (const key of ['yaw', 'pitch', 'roll', 'gazeX', 'gazeY']) {
       const config = key.startsWith('gaze') ? { stiffness: 240, damping: 24 } : { stiffness: 100, damping: 10 };
       const next = advanceSpring(state[key], targets[key], dt, config);
       // The engine returns a state; accepting in-place engines is harmless too.
@@ -262,6 +264,7 @@ async function startBot() {
       // A deliberate keyboard action gets an instant, non-animated response.
       state.yaw = { value: pointerX * .55, velocity: 0 };
       state.pitch = { value: pointerY * .32, velocity: 0 };
+      state.roll = { value: pointerX * .07, velocity: 0 };
       state.gazeX = { value: pointerX, velocity: 0 };
       state.gazeY = { value: -pointerY, velocity: 0 };
       paint(poseAtRest());

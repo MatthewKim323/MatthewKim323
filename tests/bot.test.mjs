@@ -26,7 +26,7 @@ test('frame has exact ASCII dimensions and coherent palette data at desktop and 
   assert.equal(CHARACTER_ASPECT, 0.5);
 });
 
-test('pose changes true geometry while eye movement changes the visor', () => {
+test('pose changes true geometry while eye movement stays on the soft orb face', () => {
   const neutral = renderAscii();
   const turning = renderAscii({ yaw: 0.5, pitch: -0.2 });
   const looking = renderAscii({ gazeX: 1, gazeY: 1 });
@@ -36,6 +36,34 @@ test('pose changes true geometry while eye movement changes the visor', () => {
   assert.deepEqual(neutral.tones.map(x => x > 0 ? 1 : 0), looking.tones.map(x => x > 0 ? 1 : 0));
   const closed = renderAscii({ blink: 1 });
   assert.ok(closed.tones.filter(x => x === 4).length < neutral.tones.filter(x => x === 4).length);
+});
+
+test('the companion has exactly two substantial capsule eyes at desktop and mobile sizes', () => {
+  for (const [cols, rows] of [[96, 50], [64, 34], [48, 26]]) {
+    const frame = renderAscii({ cols, rows });
+    const unseen = new Set([...frame.tones.keys()].filter(index => frame.tones[index] === 4));
+    const eyes = [];
+    while (unseen.size) {
+      const seed = unseen.values().next().value;
+      const pending = [seed], component = [];
+      unseen.delete(seed);
+      while (pending.length) {
+        const index = pending.pop();
+        component.push(index);
+        const x = index % cols, y = Math.floor(index / cols);
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            if (x + dx < 0 || x + dx >= cols || y + dy < 0 || y + dy >= rows) continue;
+            const neighbor = (y + dy) * cols + x + dx;
+            if (unseen.delete(neighbor)) pending.push(neighbor);
+          }
+        }
+      }
+      eyes.push(component);
+    }
+    assert.equal(eyes.length, 2, 'two readable, separate eyes');
+    for (const eye of eyes) assert.ok(eye.length >= 8, 'capsules must survive downsampling');
+  }
 });
 
 test('rendering is deterministic and sanitizes untrusted dimensions and pose values', () => {
@@ -64,7 +92,7 @@ test('idle closes its loop exactly and remains smooth around the seam', () => {
     assert.ok(Object.values(pose).every(Number.isFinite));
   }
   const before = idlePose(12 - 0.0001), after = idlePose(0.0001);
-  for (const key of ['yaw', 'pitch', 'gazeX', 'gazeY', 'blink']) {
+  for (const key of ['yaw', 'pitch', 'roll', 'gazeX', 'gazeY', 'blink']) {
     assert.ok(Math.abs(before[key] - after[key]) < 0.001, key);
   }
   assert.equal(idlePose(2.7).blink, 1);

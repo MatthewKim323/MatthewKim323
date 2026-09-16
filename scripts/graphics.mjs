@@ -4,8 +4,8 @@ import { root, escapeXML as esc } from './lib.mjs';
 import { renderAscii, idlePose } from '../src/bot-core.mjs';
 
 export const palettes = {
-  dark:{bg:'#0d1117',fg:'#c9d1d9',bright:'#f0f6fc',muted:'#8b949e',line:'#30363d',accent:'#9cceff',faint:'#394552'},
-  light:{bg:'#ffffff',fg:'#303841',bright:'#171d24',muted:'#5c6672',line:'#d8dee4',accent:'#215f9c',faint:'#c1c9d2'}
+  dark:{bg:'#0d1117',fg:'#e2ded5',bright:'#fffaf2',muted:'#a39f97',line:'#30363d',accent:'#ffb577',faint:'#394552'},
+  light:{bg:'#ffffff',fg:'#37352f',bright:'#171d24',muted:'#67635b',line:'#d8dee4',accent:'#994509',faint:'#c1c9d2'}
 };
 const font = (await readFile(path.join(root,'assets/fonts/ProfileMono-Ascii.woff2'))).toString('base64');
 const style = `<style>@font-face{font-family:JB;src:url(data:font/woff2;base64,${font}) format('woff2')}text{font-family:JB,monospace;font-variant-ligatures:none}.poster{display:none}@media(prefers-reduced-motion:reduce){.motion{display:none}.poster{display:inline}}</style>`;
@@ -43,7 +43,7 @@ export function botGraphic(theme,{animated=true}={}) {
     motion+=`<g opacity="${i===0?1:0}"><use xlink:href="#p${i}"/><animate attributeName="opacity" values="${values}" keyTimes="${times}" dur="12s" repeatCount="indefinite" calcMode="discrete"/></g>`;
   }
   const footer=`<path d="M260 458H500" stroke="${c.line}"/>${text(380,484,'MATT / 001',11,c.muted,'text-anchor="middle" letter-spacing="3"')}`;
-  return svg(760,504,'Original ASCII robot with a dark visor and ice-blue eyes. Open the live page for cursor tracking.',`<defs>${defs}</defs>${animated?`<g class="motion">${motion}</g><g class="poster"><use xlink:href="#p0"/></g>`:'<use xlink:href="#p0"/>'}${footer}`);
+  return svg(760,504,'A floating ASCII companion with two rounded eyes. Open the live page for cursor tracking.',`<defs>${defs}</defs>${animated?`<g class="motion">${motion}</g><g class="poster"><use xlink:href="#p0"/></g>`:'<use xlink:href="#p0"/>'}${footer}`);
 }
 
 export function headingGraphic(label,number,theme) {
