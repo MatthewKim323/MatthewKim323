@@ -1,0 +1,21 @@
+{
+  "name": "matt-profile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "One character, two surfaces: a generated GitHub profile and an interactive ASCII portfolio.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
+    "check": "npm run generate && npm test && npm run build",
+    "stats": "node scripts/fetch-activity.mjs",
+    "dev": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0"
+  }
+}
