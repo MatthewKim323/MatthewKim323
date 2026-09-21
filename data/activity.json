@@ -1,55 +1,60 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-09-19",
+  "updatedOn": "2026-09-21",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
-    "from": "2025-09-14",
-    "to": "2026-09-19"
+    "from": "2025-09-21",
+    "to": "2026-09-21"
   },
-  "total": 3173,
-  "activeDays": 347,
-  "longestStreak": 104,
-  "publicRepositories": 30,
+  "total": 3421,
+  "activeDays": 343,
+  "longestStreak": 106,
+  "publicRepositories": 31,
   "languages": [
     {
       "name": "TypeScript",
-      "bytes": 6932037,
-      "percent": 60.7
+      "bytes": 9330417,
+      "percent": 58.4
     },
     {
       "name": "Python",
-      "bytes": 1487512,
-      "percent": 13
+      "bytes": 3315393,
+      "percent": 20.8
     },
     {
       "name": "JavaScript",
-      "bytes": 1249000,
-      "percent": 10.9
+      "bytes": 1298892,
+      "percent": 8.1
     },
     {
       "name": "CSS",
-      "bytes": 904675,
-      "percent": 7.9
+      "bytes": 1135071,
+      "percent": 7.1
     },
     {
       "name": "Jupyter Notebook",
       "bytes": 541397,
-      "percent": 4.7
+      "percent": 3.4
     },
     {
       "name": "HTML",
-      "bytes": 158833,
-      "percent": 1.4
+      "bytes": 165567,
+      "percent": 1
     },
     {
       "name": "PLpgSQL",
       "bytes": 81947,
-      "percent": 0.7
+      "percent": 0.5
     },
     {
       "name": "Shell",
-      "bytes": 40169,
-      "percent": 0.4
+      "bytes": 55482,
+      "percent": 0.3
+    },
+    {
+      "name": "TeX",
+      "bytes": 29200,
+      "percent": 0.2
     },
     {
       "name": "GLSL",
@@ -58,7 +63,7 @@
     },
     {
       "name": "Dockerfile",
-      "bytes": 3625,
+      "bytes": 5819,
       "percent": 0
     },
     {
@@ -68,41 +73,6 @@
     }
   ],
   "days": [
-    {
-      "date": "2025-09-14",
-      "count": 1,
-      "weekday": 0
-    },
-    {
-      "date": "2025-09-15",
-      "count": 1,
-      "weekday": 1
-    },
-    {
-      "date": "2025-09-16",
-      "count": 0,
-      "weekday": 2
-    },
-    {
-      "date": "2025-09-17",
-      "count": 1,
-      "weekday": 3
-    },
-    {
-      "date": "2025-09-18",
-      "count": 1,
-      "weekday": 4
-    },
-    {
-      "date": "2025-09-19",
-      "count": 1,
-      "weekday": 5
-    },
-    {
-      "date": "2025-09-20",
-      "count": 2,
-      "weekday": 6
-    },
     {
       "date": "2025-09-21",
       "count": 2,
@@ -1920,8 +1890,18 @@
     },
     {
       "date": "2026-09-19",
-      "count": 28,
+      "count": 144,
       "weekday": 6
+    },
+    {
+      "date": "2026-09-20",
+      "count": 132,
+      "weekday": 0
+    },
+    {
+      "date": "2026-09-21",
+      "count": 7,
+      "weekday": 1
     }
   ]
 }
