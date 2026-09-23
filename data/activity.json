@@ -1,40 +1,40 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-09-22",
+  "updatedOn": "2026-09-23",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
     "from": "2025-09-21",
-    "to": "2026-09-22"
+    "to": "2026-09-23"
   },
-  "total": 3475,
-  "activeDays": 344,
-  "longestStreak": 107,
-  "publicRepositories": 31,
+  "total": 3483,
+  "activeDays": 345,
+  "longestStreak": 108,
+  "publicRepositories": 32,
   "languages": [
     {
       "name": "TypeScript",
-      "bytes": 9330417,
-      "percent": 58.4
+      "bytes": 9545216,
+      "percent": 58.8
     },
     {
       "name": "Python",
       "bytes": 3315393,
-      "percent": 20.8
+      "percent": 20.4
     },
     {
       "name": "JavaScript",
-      "bytes": 1298892,
-      "percent": 8.1
+      "bytes": 1335661,
+      "percent": 8.2
     },
     {
       "name": "CSS",
       "bytes": 1135071,
-      "percent": 7.1
+      "percent": 7
     },
     {
       "name": "Jupyter Notebook",
       "bytes": 541397,
-      "percent": 3.4
+      "percent": 3.3
     },
     {
       "name": "HTML",
@@ -48,8 +48,8 @@
     },
     {
       "name": "Shell",
-      "bytes": 55482,
-      "percent": 0.3
+      "bytes": 56970,
+      "percent": 0.4
     },
     {
       "name": "TeX",
@@ -1907,6 +1907,11 @@
       "date": "2026-09-22",
       "count": 3,
       "weekday": 2
+    },
+    {
+      "date": "2026-09-23",
+      "count": 8,
+      "weekday": 3
     }
   ]
 }
