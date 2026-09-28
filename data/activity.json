@@ -1,60 +1,65 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-09-26",
+  "updatedOn": "2026-09-28",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
-    "from": "2025-09-21",
-    "to": "2026-09-26"
+    "from": "2025-09-28",
+    "to": "2026-09-28"
   },
-  "total": 3498,
-  "activeDays": 347,
+  "total": 3813,
+  "activeDays": 342,
   "longestStreak": 109,
-  "publicRepositories": 32,
+  "publicRepositories": 34,
   "languages": [
     {
       "name": "TypeScript",
-      "bytes": 9580967,
-      "percent": 58.9
+      "bytes": 12238907,
+      "percent": 58.1
     },
     {
       "name": "Python",
-      "bytes": 3315393,
-      "percent": 20.4
+      "bytes": 4422524,
+      "percent": 21
     },
     {
       "name": "JavaScript",
-      "bytes": 1336010,
-      "percent": 8.2
+      "bytes": 2061980,
+      "percent": 9.8
     },
     {
       "name": "CSS",
-      "bytes": 1135071,
-      "percent": 7
+      "bytes": 1293256,
+      "percent": 6.1
     },
     {
       "name": "Jupyter Notebook",
       "bytes": 541397,
-      "percent": 3.3
+      "percent": 2.6
     },
     {
       "name": "HTML",
-      "bytes": 165567,
-      "percent": 1
+      "bytes": 244145,
+      "percent": 1.2
     },
     {
       "name": "PLpgSQL",
       "bytes": 81947,
-      "percent": 0.5
+      "percent": 0.4
     },
     {
       "name": "Shell",
-      "bytes": 56970,
+      "bytes": 76722,
       "percent": 0.4
+    },
+    {
+      "name": "Swift",
+      "bytes": 41550,
+      "percent": 0.2
     },
     {
       "name": "TeX",
       "bytes": 29200,
-      "percent": 0.2
+      "percent": 0.1
     },
     {
       "name": "GLSL",
@@ -67,52 +72,12 @@
       "percent": 0
     },
     {
-      "name": "Swift",
-      "bytes": 1171,
-      "percent": 0
-    },
-    {
       "name": "Makefile",
       "bytes": 902,
       "percent": 0
     }
   ],
   "days": [
-    {
-      "date": "2025-09-21",
-      "count": 2,
-      "weekday": 0
-    },
-    {
-      "date": "2025-09-22",
-      "count": 1,
-      "weekday": 1
-    },
-    {
-      "date": "2025-09-23",
-      "count": 1,
-      "weekday": 2
-    },
-    {
-      "date": "2025-09-24",
-      "count": 1,
-      "weekday": 3
-    },
-    {
-      "date": "2025-09-25",
-      "count": 1,
-      "weekday": 4
-    },
-    {
-      "date": "2025-09-26",
-      "count": 1,
-      "weekday": 5
-    },
-    {
-      "date": "2025-09-27",
-      "count": 1,
-      "weekday": 6
-    },
     {
       "date": "2025-09-28",
       "count": 1,
@@ -1930,8 +1895,18 @@
     },
     {
       "date": "2026-09-26",
-      "count": 7,
+      "count": 175,
       "weekday": 6
+    },
+    {
+      "date": "2026-09-27",
+      "count": 152,
+      "weekday": 0
+    },
+    {
+      "date": "2026-09-28",
+      "count": 3,
+      "weekday": 1
     }
   ]
 }
