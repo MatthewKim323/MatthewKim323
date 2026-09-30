@@ -1,70 +1,70 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-09-29",
+  "updatedOn": "2026-09-30",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
     "from": "2025-09-28",
-    "to": "2026-09-29"
+    "to": "2026-09-30"
   },
-  "total": 3817,
-  "activeDays": 343,
+  "total": 3879,
+  "activeDays": 344,
   "longestStreak": 109,
-  "publicRepositories": 34,
+  "publicRepositories": 40,
   "languages": [
     {
+      "name": "JavaScript",
+      "bytes": 34791016,
+      "percent": 50.8
+    },
+    {
       "name": "TypeScript",
-      "bytes": 12238907,
-      "percent": 58.1
+      "bytes": 17351425,
+      "percent": 25.3
+    },
+    {
+      "name": "HTML",
+      "bytes": 9576503,
+      "percent": 14
     },
     {
       "name": "Python",
-      "bytes": 4422524,
-      "percent": 21
-    },
-    {
-      "name": "JavaScript",
-      "bytes": 2061980,
-      "percent": 9.8
+      "bytes": 4423990,
+      "percent": 6.5
     },
     {
       "name": "CSS",
-      "bytes": 1293256,
-      "percent": 6.1
+      "bytes": 1532123,
+      "percent": 2.2
     },
     {
       "name": "Jupyter Notebook",
       "bytes": 541397,
-      "percent": 2.6
+      "percent": 0.8
     },
     {
-      "name": "HTML",
-      "bytes": 244145,
-      "percent": 1.2
+      "name": "GLSL",
+      "bytes": 87635,
+      "percent": 0.1
     },
     {
       "name": "PLpgSQL",
       "bytes": 81947,
-      "percent": 0.4
+      "percent": 0.1
     },
     {
       "name": "Shell",
       "bytes": 76722,
-      "percent": 0.4
+      "percent": 0.1
     },
     {
       "name": "Swift",
       "bytes": 41550,
-      "percent": 0.2
+      "percent": 0.1
     },
     {
       "name": "TeX",
       "bytes": 29200,
-      "percent": 0.1
-    },
-    {
-      "name": "GLSL",
-      "bytes": 14972,
-      "percent": 0.1
+      "percent": 0
     },
     {
       "name": "Dockerfile",
@@ -1825,7 +1825,7 @@
     },
     {
       "date": "2026-09-12",
-      "count": 23,
+      "count": 51,
       "weekday": 6
     },
     {
@@ -1910,8 +1910,13 @@
     },
     {
       "date": "2026-09-29",
-      "count": 2,
+      "count": 30,
       "weekday": 2
+    },
+    {
+      "date": "2026-09-30",
+      "count": 6,
+      "weekday": 3
     }
   ]
 }
