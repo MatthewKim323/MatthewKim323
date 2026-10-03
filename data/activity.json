@@ -1,40 +1,40 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-10-02",
+  "updatedOn": "2026-10-03",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
     "from": "2025-09-28",
-    "to": "2026-10-02"
+    "to": "2026-10-03"
   },
-  "total": 3930,
-  "activeDays": 346,
+  "total": 4123,
+  "activeDays": 347,
   "longestStreak": 109,
-  "publicRepositories": 45,
+  "publicRepositories": 46,
   "languages": [
     {
       "name": "JavaScript",
-      "bytes": 34796102,
-      "percent": 44.3
+      "bytes": 34796411,
+      "percent": 43.1
     },
     {
       "name": "TypeScript",
-      "bytes": 27362220,
-      "percent": 34.8
+      "bytes": 29233384,
+      "percent": 36.2
     },
     {
       "name": "HTML",
       "bytes": 9577378,
-      "percent": 12.2
+      "percent": 11.9
     },
     {
       "name": "Python",
       "bytes": 4435097,
-      "percent": 5.6
+      "percent": 5.5
     },
     {
       "name": "CSS",
-      "bytes": 1552812,
-      "percent": 2
+      "bytes": 1802105,
+      "percent": 2.2
     },
     {
       "name": "Jupyter Notebook",
@@ -42,13 +42,13 @@
       "percent": 0.7
     },
     {
-      "name": "GLSL",
-      "bytes": 87635,
+      "name": "PLpgSQL",
+      "bytes": 97348,
       "percent": 0.1
     },
     {
-      "name": "PLpgSQL",
-      "bytes": 81947,
+      "name": "GLSL",
+      "bytes": 87635,
       "percent": 0.1
     },
     {
@@ -1925,8 +1925,13 @@
     },
     {
       "date": "2026-10-02",
-      "count": 3,
+      "count": 194,
       "weekday": 5
+    },
+    {
+      "date": "2026-10-03",
+      "count": 2,
+      "weekday": 6
     }
   ]
 }
