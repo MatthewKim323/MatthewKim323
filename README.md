@@ -124,7 +124,7 @@ a ucsb schedule builder: xgboost over 104k course rows and 17 years of grades, p
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/activity-dark.svg">
-  <img src="./assets/activity-light.svg" width="760" alt="5,592 contributions across 349 active days in the displayed period.">
+  <img src="./assets/activity-light.svg" width="760" alt="5,720 contributions across 350 active days in the displayed period.">
 </picture>
 
 <picture>
@@ -132,4 +132,4 @@ a ucsb schedule builder: xgboost over 104k course rows and 17 years of grades, p
   <img src="./assets/languages-light.svg" width="760" alt="Language bytes across owned public non-fork repositories.">
 </picture>
 
-<sub>GitHub-reported activity · public repository language bytes · refreshed 2026-11-06</sub>
+<sub>GitHub-reported activity · public repository language bytes · refreshed 2026-11-07</sub>
