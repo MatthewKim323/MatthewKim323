@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-11-20",
+  "updatedOn": "2026-11-21",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
     "from": "2025-11-16",
-    "to": "2026-11-20"
+    "to": "2026-11-21"
   },
-  "total": 7054,
-  "activeDays": 348,
+  "total": 7204,
+  "activeDays": 349,
   "longestStreak": 109,
   "publicRepositories": 47,
   "languages": [
@@ -18,7 +18,7 @@
     },
     {
       "name": "TypeScript",
-      "bytes": 31199088,
+      "bytes": 31220081,
       "percent": 37.5
     },
     {
@@ -28,12 +28,12 @@
     },
     {
       "name": "Python",
-      "bytes": 4516472,
+      "bytes": 4529634,
       "percent": 5.4
     },
     {
       "name": "CSS",
-      "bytes": 1807037,
+      "bytes": 1814105,
       "percent": 2.2
     },
     {
@@ -1625,7 +1625,7 @@
     },
     {
       "date": "2026-09-21",
-      "count": 33,
+      "count": 55,
       "weekday": 1
     },
     {
@@ -1635,12 +1635,12 @@
     },
     {
       "date": "2026-09-23",
-      "count": 15,
+      "count": 23,
       "weekday": 3
     },
     {
       "date": "2026-09-24",
-      "count": 1,
+      "count": 3,
       "weekday": 4
     },
     {
@@ -1655,7 +1655,7 @@
     },
     {
       "date": "2026-09-27",
-      "count": 152,
+      "count": 156,
       "weekday": 0
     },
     {
@@ -1680,7 +1680,7 @@
     },
     {
       "date": "2026-10-02",
-      "count": 194,
+      "count": 198,
       "weekday": 5
     },
     {
@@ -1730,7 +1730,7 @@
     },
     {
       "date": "2026-10-12",
-      "count": 50,
+      "count": 51,
       "weekday": 1
     },
     {
@@ -1920,13 +1920,18 @@
     },
     {
       "date": "2026-11-19",
-      "count": 33,
+      "count": 98,
       "weekday": 4
     },
     {
       "date": "2026-11-20",
-      "count": 0,
+      "count": 44,
       "weekday": 5
+    },
+    {
+      "date": "2026-11-21",
+      "count": 0,
+      "weekday": 6
     }
   ]
 }
