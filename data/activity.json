@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedOn": "2026-11-27",
+  "updatedOn": "2026-11-28",
   "source": "GitHub GraphQL contribution calendar; languages from owned public non-fork repositories",
   "period": {
     "from": "2025-11-23",
-    "to": "2026-11-27"
+    "to": "2026-11-28"
   },
-  "total": 7941,
-  "activeDays": 349,
+  "total": 8188,
+  "activeDays": 350,
   "longestStreak": 109,
   "publicRepositories": 48,
   "languages": [
@@ -1845,7 +1845,7 @@
     },
     {
       "date": "2026-11-11",
-      "count": 37,
+      "count": 38,
       "weekday": 3
     },
     {
@@ -1855,12 +1855,12 @@
     },
     {
       "date": "2026-11-13",
-      "count": 161,
+      "count": 168,
       "weekday": 5
     },
     {
       "date": "2026-11-14",
-      "count": 28,
+      "count": 39,
       "weekday": 6
     },
     {
@@ -1920,13 +1920,18 @@
     },
     {
       "date": "2026-11-26",
-      "count": 43,
+      "count": 57,
       "weekday": 4
     },
     {
       "date": "2026-11-27",
-      "count": 7,
+      "count": 9,
       "weekday": 5
+    },
+    {
+      "date": "2026-11-28",
+      "count": 212,
+      "weekday": 6
     }
   ]
 }
